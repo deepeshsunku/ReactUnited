@@ -1,0 +1,18 @@
+/*Card outline*/
+
+.Card-div {
+	background: #fff;
+	border-radius: 10px;
+	margin: 50px;
+	box-shadow: 0pt 1pt 3pt 2pt rgba(0, 0, 0, 0.2);
+	max-width: 300pt;
+}
+
+.TwoColumn-div {
+	height: 20pt;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	overflow: auto;
+ 	padding: 10pt;
+}
