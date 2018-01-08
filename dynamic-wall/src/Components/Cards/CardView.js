@@ -4,6 +4,8 @@ import '../../Styles/Cards.css';
 
 // Components
 import TwoColumn from './Rows/TwoColumn.js';
+import CardTitle from './Rows/CardTitle.js';
+import Cta from './Rows/Cta.js';
 
 class CardView extends Component {
 	constructor(props) {
@@ -26,11 +28,41 @@ class CardView extends Component {
 	        }
 	      }
 	    );
+
+	    this.state = {
+		  type: "TwoColumn",
+		  title: "Morning Report",
+		  timestamp: "2018-01-05:9:00:00Z",
+		  data: {
+			  rows: [{
+			    name: "Scheduled Production",
+			    value: 7230,
+			    type: "Amount"
+			  },
+			  {
+			    name: "Scheduled Appointments",
+			    value: 10,
+			    type: "Int",
+			  }]
+		  },
+		  cta: {
+		    title: "Like what you see? Try the evening report",
+		    url: "sikkasoft.com/dentalfloss" 
+		  }
+		}
 	}
   	render() {
+  		var rowItems = this.state.data.rows.map(function(row) {
+	      return (
+	        <TwoColumn name={row.name} value={row.value} />
+	      );
+	    });
+
     	return (
       		<div className="Card-div">
-      			<TwoColumn name="Scheduled Production" value="$7,243" />
+      			<CardTitle title="Morning Report" timestamp="7 JANUARY 2018" />
+      			{rowItems}
+      			<Cta title={this.state.cta.title} url={this.state.cta.url}/>
       		</div>
     	);
   	}

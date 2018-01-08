@@ -16,13 +16,44 @@
   font-family: 'HelveticaNeue';
 }
 
+.Card-line-div {
+	height: 0.8pt;
+	background: #eee;
+	margin: 0pt 5pt 0pt 5pt;
+}
+
 .TwoColumn-div {
-	height: 20pt;
+	height: 15pt;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	overflow: auto;
  	padding: 10pt;
+}
+
+.Cta-div {
+	height: 15pt;
+	display: flex;
+	align-items: center;
+	overflow: auto;
+ 	padding: 10pt;
+}
+
+.Cta-div > a {
+	color: #3F5EFB;
+	text-decoration: none;
+}
+
+/* Title card */
+
+.Title-div {
+	height: 30pt;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	overflow: auto;
+ 	padding: 10pt;
+  background: #eee;
 }
 
 .poster-image {
@@ -69,4 +100,16 @@
 	margin-bottom: 8pt;
 	padding-bottom: 8pt;
 	line-height: 16pt;
+}
+
+.Title {
+	font-size: 17pt;
+	font-weight: 500;
+	color: #333;
+}
+
+.Timestamp {
+	font-size: 9pt;
+	font-weight: 200;
+	color: #777;
 }
