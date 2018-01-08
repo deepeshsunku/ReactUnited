@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LinkPreview from 'react-native-link-preview';
-import Cta from './Rows/Cta.js';
+import Cta from './Rows/Cta';
+import Header from './Rows/Header';
 import '../../Styles/Cards.css';
 
 const nameStyle = {
@@ -28,21 +29,14 @@ class ShareCard extends Component {
 	render() {
   	return (
       <div className="Card-div">
-        <div className="poster-image-div">
-          <img className="poster-image" src={this.props.posterImgUrl} />
-        </div>
-        <div className="poster-details">
-    			<span className="posted-by">{this.props.postedBy}</span>
-          <br />
-          <span className="posted-timestamp">{this.props.timestamp}</span>
-        </div>
+        <Header title={this.props.title} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
         <div className="link-details">
           <img className="link-image" src={this.state.images[0]} />
         </div>
         <div className="link-description">
           <span className="link-description-span">{this.state.description}...</span>
         </div>
-        <Cta title="LEARN MORE" url={this.state.url} />
+        <Cta title={this.props.ctaTitle} url={this.state.url} />
       </div>
   	);
 	}

@@ -3,9 +3,10 @@ import $ from "jquery";
 import '../../Styles/Cards.css';
 
 // Components
-import TwoColumn from './Rows/TwoColumn.js';
-import CardTitle from './Rows/CardTitle.js';
-import Cta from './Rows/Cta.js';
+import TwoColumn from './Rows/TwoColumn';
+import CardTitle from './Rows/CardTitle';
+import Cta from './Rows/Cta';
+import Header from './Rows/Header';
 
 class CardView extends Component {
 	constructor(props) {
@@ -60,7 +61,7 @@ class CardView extends Component {
 
     	return (
       		<div className="Card-div">
-      			<CardTitle title="Morning Report" timestamp="7 JANUARY 2018" />
+		        <Header title={this.props.title} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
       			{rowItems}
       			<Cta title={this.state.cta.title} url={this.state.cta.url}/>
       		</div>

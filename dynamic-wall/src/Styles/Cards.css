@@ -77,15 +77,22 @@
 		margin-top: 8pt;
 		font-size: 12pt;
     /* float: left; */
+		width: 250pt;
 }
 
 .poster-details .posted-by {
     float: left;
 }
 
-.posted-timestamp {
+.poster-details .title {
+		color: #653184;
+    float: right;
+}
+
+.poster-details .posted-timestamp {
 	color: #717985;
-	font-size: 10pt;
+	font-size: 8pt;
+	float: bottom;
 }
 
 .link-image {
