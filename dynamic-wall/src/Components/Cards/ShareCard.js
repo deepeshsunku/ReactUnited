@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LinkPreview from 'react-native-link-preview';
+import Cta from './Rows/Cta.js';
 import '../../Styles/Cards.css';
 
 const nameStyle = {
@@ -41,6 +42,7 @@ class ShareCard extends Component {
         <div className="link-description">
           <span className="link-description-span">{this.state.description}...</span>
         </div>
+        <Cta title="LEARN MORE" url={this.state.url} />
       </div>
   	);
 	}

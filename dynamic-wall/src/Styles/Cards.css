@@ -95,11 +95,10 @@
 .link-description {
 	font-size: 13pt;
 	margin-top: 5pt;
-	margin-left: 8pt;
+	margin-left: 10pt;
 	margin-right: 8pt;
-	margin-bottom: 8pt;
-	padding-bottom: 8pt;
 	line-height: 16pt;
+	color: #1F3158;
 }
 
 .Title {
