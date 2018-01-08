@@ -61,3 +61,8 @@
   color: #333;
   padding: 20pt;
 }
+
+.header-logo {
+  margin-left: 20pt;
+  height: 40px;
+}

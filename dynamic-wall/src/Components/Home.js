@@ -10,6 +10,7 @@ class Home extends Component {
     return (
       <div>
       	<header className="Home-header">
+          <img className="header-logo" src="http://res.cloudinary.com/dya5uydvs/image/upload/v1515375188/sikka_icon_llxsqv.png" />
           <h1 className="Home-title">Welcome Deepesh</h1>
         </header>
         <div>
@@ -44,6 +45,11 @@ class Home extends Component {
             postedBy='SIKKA'
             timestamp='5 JANUARY 2018'
             url='https://techcrunch.com/2017/10/11/amazon-alexa-devices-can-finally-distinguish-between-different-voices/' />
+          <ShareCard
+            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
+            postedBy='SIKKA'
+            timestamp='5 JANUARY 2018'
+            url='http://knowledge.wharton.upenn.edu/article/artificial-intelligence-powering-everyday-tasks/' />
         </div>
       </div>
     );
