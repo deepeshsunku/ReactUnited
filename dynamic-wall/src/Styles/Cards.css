@@ -1,4 +1,11 @@
 /*Card outline*/
+@font-face {
+  font-family: 'HelveticaNeue';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url('../fonts/HelveticaNeueLight.ttf') format('truetype');
+}
 
 .Card-div {
 	background: #fff;
@@ -6,6 +13,7 @@
 	margin: 50px;
 	box-shadow: 0pt 1pt 3pt 2pt rgba(0, 0, 0, 0.2);
 	max-width: 300pt;
+  font-family: 'HelveticaNeue';
 }
 
 .Card-line-div {
@@ -45,7 +53,53 @@
 	align-items: center;
 	overflow: auto;
  	padding: 10pt;
- 	background: #eee;
+  background: #eee;
+}
+
+.poster-image {
+	height: 27pt;
+	width: 27pt;
+	margin-top: 8pt;
+	margin-left: 8pt;
+	margin-bottom: 5pt;
+	margin-right: 5pt;
+	border-radius: 50pt;
+}
+
+.poster-image-div {
+    display: inline-block;
+    /* float: left; */
+}
+
+.poster-details {
+    display: inline-block;
+		vertical-align: top;
+		margin-top: 8pt;
+		font-size: 12pt;
+    /* float: left; */
+}
+
+.poster-details .posted-by {
+    float: left;
+}
+
+.posted-timestamp {
+	color: #717985;
+	font-size: 10pt;
+}
+
+.link-image {
+	max-width: 300pt;
+}
+
+.link-description {
+	font-size: 13pt;
+	margin-top: 5pt;
+	margin-left: 8pt;
+	margin-right: 8pt;
+	margin-bottom: 8pt;
+	padding-bottom: 8pt;
+	line-height: 16pt;
 }
 
 .Title {
