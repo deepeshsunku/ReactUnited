@@ -16,7 +16,7 @@ var cardArr = [{
 	  }]
   },
   cta: {
-    title: "Click here to buy some dental floss."
+    title: "Click here to buy some dental floss.",
     url: "sikkasoft.com/dentalfloss" 
   }
 },
@@ -30,7 +30,7 @@ var cardArr = [{
     profileImage: "some url",
   },
   cta: {
-    title: "Click here to buy some dental floss."
+    title: "Click here to buy some dental floss.",
     url: "sikkasoft.com/dentalfloss" 
   }
 }]
