@@ -11,14 +11,19 @@ import { Provider } from 'react-redux';
 // Components
 import Login from './Components/Login.js';
 import Home from './Components/Home.js';
+import dynamicWallReducer from './Reducers/reducers';
+
+let store = createStore(dynamicWallReducer)
 
 ReactDOM.render(
-	<Router history={browserHistory}>
-	    <Route path="/" component={App}>
-	 		<IndexRoute component={Login}/>
-	 		<Route path="home" component={Home} />
-	 	</Route>
-	</Router>,
+	<Provider store={store}>
+		<Router history={browserHistory}>
+		    <Route path="/" component={App}>
+		 		<IndexRoute component={Login}/>
+		 		<Route path="home" component={Home} />
+		 	</Route>
+		</Router>
+	</Provider>,
 	document.getElementById('root')
 );
 

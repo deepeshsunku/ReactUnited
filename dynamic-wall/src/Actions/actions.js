@@ -3,7 +3,7 @@
  */
 
 export const ADD_REQUEST_KEY = 'ADD_REQUEST_KEY'
-export const ADD_CARDS = 'ADD_CARDS'
+export const ADD_CARD = 'ADD_CARD'
 
 /*
  * action creators
@@ -16,9 +16,9 @@ export function addRequestKey(requestKey) {
 	})
 }
 
-export function addCards(cards) {
+export function addCard(card) {
 	return({
-		data: cards,
-		type: ADD_CARDS
+		data: card,
+		type: ADD_CARD
 	})
 }
