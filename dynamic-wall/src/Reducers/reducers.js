@@ -2,7 +2,7 @@ import { ADD_REQUEST_KEY, ADD_CARD } from '../Actions/actions'
 
 const initialState = {
   	cards: [],
-  	requestKey: "cfeda940846ed3c835225ac7c677df9a"
+  	requestKey: "b01aac0b6725504dd88504a7e5e954a0"
 }
 
 function dynamicWallReducer(state, action) {

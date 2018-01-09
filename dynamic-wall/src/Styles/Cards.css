@@ -10,10 +10,11 @@
 .Card-div {
 	background: #fff;
 	border-radius: 10px;
-	margin: 50px;
+	margin: 20px;
 	box-shadow: 0pt 1pt 3pt 2pt rgba(0, 0, 0, 0.2);
 	max-width: 300pt;
-  font-family: 'HelveticaNeue';
+	flex-direction: column;
+    font-family: 'HelveticaNeue';
 }
 
 .Card-line-div {
