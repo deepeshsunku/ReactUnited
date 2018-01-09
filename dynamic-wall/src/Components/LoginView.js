@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import $ from "jquery";
 import { connect } from 'react-redux';
 import '../App.css';
+import axios from 'axios';
 
 const textFieldStyle = {
   margin: '30px 40px 30px 40px',
@@ -56,6 +57,23 @@ class LoginView extends Component {
       password: this.state.password
     }
     console.log("auth payload", payload);
+
+    axios({
+      method: 'post',
+      url: 'https://uat-secure-api3.sikkasoftware.com/api/v3/users/signin',
+      data: {
+      	un: this.state.email,
+      	pw: this.state.password,
+      	unique_id: 'react-united-dwall',
+      	app_name: 'PM'
+      }
+    }).then(function (response) {
+      browserHistory.push('/home');
+      console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    });
+
     // $.ajax({
     //   url: "",
     //   type: "POST",
@@ -66,7 +84,7 @@ class LoginView extends Component {
     //       console.log("POST auth success!!!", data, data.login.token);
     //       //this.setState({isLoading: false, buttonState: "Completed!"});
     //       this.props.dispatch(addToken(data.login.token));
-          browserHistory.push('/home');
+          // browserHistory.push('/home');
     //     } else {
     //       //this.setState({isLoading: false, buttonState: "Error! Retry"});
     //       alert("We had trouble logging you in. Please try again.")
