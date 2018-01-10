@@ -68,12 +68,16 @@
 }
 
 .Cards {
-  display: flex;
+  /*display: flex;*/
   /*flex-direction: column;*/
-  flex-wrap: wrap;
+  /*flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: center;*/
   /*-webkit-column-count: 2; 
   -moz-column-count: 2; 
   column-count: 2;*/
+
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
 }

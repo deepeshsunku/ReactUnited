@@ -13,11 +13,19 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
-    console.log("State updated");
-    this.state = { cards: this.props.cards, data: false };
+    console.log("State updated", window.innerWidth);
+    if(window.innerWidth <= 760) {
+      this.state = { cards: this.props.cards, data: false, height: 4500 };
+    } else {
+      this.state = { cards: this.props.cards, data: false, height: 32200 };
+    }
   }
 
   componentDidMount() {
+    // Add an event listener for screen change
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
+
     console.log("this.props", this.state.cards);
     var requestKey = this.props.requestKey;
     var requestType = "";
@@ -119,9 +127,9 @@ class Home extends Component {
           };
           console.log("GET success!!!", cardModel);
           this.props.dispatch(addCard(cardModel));
-          this.setState({cards: this.props.cards});
+          this.setState({cards: this.props.cards, height: this.state.height+200});
         } else {
-          alert("We had trouble fetching your data. Please try again.")
+          alert("We had trouble fetching your data. Please try again")
           console.log("GET auth!!!", data);
         }
       }.bind(this)
@@ -129,8 +137,21 @@ class Home extends Component {
     }.bind(this));
   }
 
+  resize() {
+    console.log("RESIZING...");
+    if(window.innerWidth <= 760) {
+      this.setState({height: 8500});
+    } else {
+      this.setState({height: 2000});
+    }
+  }
+
   render() {
-    console.log("Card state", this.state.cards);
+    const cardsStyle = {
+      height: `${this.state.height}px`
+    }
+
+    console.log("Card height", this.state.height);
     var count = 0;
     var cardItems = this.state.cards.map(function(card) {
         if(card.type === "TwoColumn") {
@@ -153,7 +174,7 @@ class Home extends Component {
           <img className="header-logo" src="http://res.cloudinary.com/dya5uydvs/image/upload/v1515375188/sikka_icon_llxsqv.png" />
           <h1 className="Home-title">Welcome</h1>
         </header>
-        <div className="Cards">
+        <div className="Cards" style={cardsStyle}>
           {cardItems}
           <ShareCard
             posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'

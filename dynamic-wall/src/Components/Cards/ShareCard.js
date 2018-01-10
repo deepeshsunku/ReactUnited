@@ -12,6 +12,12 @@ const valueStyle = {
   float: 'right',
 };
 
+const masonry = {
+  display: 'flex',
+  flexFlow: 'column wrap',
+  maxHeight: '2500px'
+}
+
 class ShareCard extends Component {
 	constructor(props) {
     super(props);
