@@ -20,52 +20,70 @@ class Home extends Component {
   componentDidMount() {
     console.log("this.props", this.state.cards);
     var requestKey = this.props.requestKey;
+    var requestType = "";
+
     var today = moment().format('YYYY-MM-DD');
-    var cards = ["Morning report"];
+
+    var cards = ["Morning Report", "Day Closing", "Accounts Receivable", "Patients Info"];
+
     cards.forEach(function(card) {
       switch(card) {
-        case "Morning report":
-          $.ajax({
-              url: `https://api.sikkasoft.com/v2/sikkanet_cards/morning%20report?request_key=${requestKey}&practice_id=1&startdate=${today}&enddate=${today}`,
-              type: "GET",
-              contentType: "application/json",
-            }).done(function(data) {
-              if(data) {
-                var dataItems = data.KPIData[0].Value;
-                var rows = [];
-                console.log("GET success!!!", dataItems);
-                dataItems.forEach(function(item) {
-                  rows.push({
-                    name: item.ColName,
-                    value: item.RegionalValue,
-                    type: "String"
-                  });
-                });
-
-                var cardModel = {};
-                cardModel.title = "Morning Report";
-                cardModel.timestamp = "NOW";
-                cardModel.data = {
-                  rows: rows
-                };
-                cardModel.cta = {
-                  title: "Like what you see? Try the closing report",
-                  url: "sikkasoft.com/dentalfloss"
-                };
-                console.log("GET success!!!", cardModel);
-                this.props.dispatch(addCard(cardModel));
-                this.setState({cards: this.props.cards});
-              } else {
-                alert("We had trouble fetching your data. Please try again.")
-                console.log("GET auth!!!", data);
-              }
-            }.bind(this)
-          );
+        case "Morning Report":
+        requestType = "morning%20report"
         break;
+
+        case "Day Closing":
+        requestType = "Day%20Closing%20Report"
+        break
+
+        case "Accounts Receivable":
+        requestType = "Accounts%20Receivable"  
+        break
+
+        case "Patients Info":
+        requestType = "New%20patients%20to%20Total%20Patients%20seen"
+        break
 
         default:
         break;
       }
+      $.ajax({
+        url: `https://api.sikkasoft.com/v2/sikkanet_cards/${requestType}?request_key=${requestKey}&practice_id=1&startdate=${today}&enddate=${today}`,
+        type: "GET",
+        contentType: "application/json",
+      }).done(function(data) {
+        if(data) {
+          var dataItems = data.KPIData[0].Value;
+          var rows = [];
+          console.log("GET success!!!", dataItems);
+          dataItems.forEach(function(item) {
+            rows.push({
+              name: item.ColName,
+              value: item.RegionalValue,
+              type: "String"
+            });
+          });
+
+          var cardModel = {};
+          cardModel.type = "TwoColumn";
+          cardModel.title = card;
+          cardModel.timestamp = "NOW";
+          cardModel.data = {
+            rows: rows
+          };
+          cardModel.cta = {
+            title: "Like what you see? Try the closing report",
+            url: "sikkasoft.com/dentalfloss"
+          };
+          console.log("GET success!!!", cardModel);
+          this.props.dispatch(addCard(cardModel));
+          this.setState({cards: this.props.cards});
+        } else {
+          alert("We had trouble fetching your data. Please try again.")
+          console.log("GET auth!!!", data);
+        }
+      }.bind(this)
+    );
     }.bind(this));
   }
 
@@ -73,8 +91,9 @@ class Home extends Component {
     console.log("Card state", this.state.cards);
     var count = 0;
     var cardItems = this.state.cards.map(function(card) {
-      return (
-        <CardView
+        if(card.type === "TwoColumn") {
+          return (
+            <CardView
             posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
             postedBy='SIKKA'
             timestamp={card.timestamp}
@@ -82,7 +101,8 @@ class Home extends Component {
             rows={card.data.rows}
             cta={card.cta}
             key={count++}/>
-      );
+          );
+        }
     });
 
     return (
@@ -91,7 +111,7 @@ class Home extends Component {
           <img className="header-logo" src="http://res.cloudinary.com/dya5uydvs/image/upload/v1515375188/sikka_icon_llxsqv.png" />
           <h1 className="Home-title">Welcome</h1>
         </header>
-        <div>
+        <div className="Cards">
           {cardItems}
           <ShareCard
             posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
