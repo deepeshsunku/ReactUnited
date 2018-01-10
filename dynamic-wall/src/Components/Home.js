@@ -139,10 +139,18 @@ class Home extends Component {
 
   resize() {
     console.log("RESIZING...");
-    if(window.innerWidth <= 760) {
-      this.setState({height: 8500});
+    if(window.innerWidth <= 860) {
+      console.log("Mobile Card height", this.state.height);
+      this.setState({height: (this.state.cards.length+9)* 950});
+    } else if(window.innerWidth > 860 && window.innerWidth <= 1260) {
+      console.log("Inbetween Card height", this.state.height);
+      this.setState({height: (this.state.cards.length+9)* 400});
+    } else if(window.innerWidth > 1260 && window.innerWidth <= 1500) {
+      console.log("Inbetween Card height", this.state.height);
+      this.setState({height: (this.state.cards.length+9)* 250});
     } else {
-      this.setState({height: 2000});
+      console.log("All other card height", this.state.height);
+      this.setState({height: (this.state.cards.length+9) * 200});
     }
   }
 
@@ -151,7 +159,6 @@ class Home extends Component {
       height: `${this.state.height}px`
     }
 
-    console.log("Card height", this.state.height);
     var count = 0;
     var cardItems = this.state.cards.map(function(card) {
         if(card.type === "TwoColumn") {
