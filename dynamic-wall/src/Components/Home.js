@@ -67,7 +67,7 @@ class Home extends Component {
           contentType: "application/json",
         }).done(function(data) {
           if(data) {
-            var dataItems = data.KPIData[0].Value;
+            var dataItems = data.KPIData[0] ? data.KPIData[0].Value : [];
             var rows = [];
             console.log("GET success!!!", dataItems);
             dataItems.forEach(function(item) {
@@ -86,8 +86,8 @@ class Home extends Component {
               rows: rows
             };
             cardModel.cta = {
-              title: "Like what you see? Try the closing report",
-              url: "sikkasoft.com/dentalfloss"
+              title: "Learn More",
+              url: "https://practicemobilizer.com"
             };
             console.log("GET success!!!", cardModel);
             this.props.dispatch(addCard(cardModel));
@@ -119,6 +119,7 @@ class Home extends Component {
       setTimeout(function(){ console.log("setTimeout"); }, 2000);
       this.props.dispatch(addCard(shareCardModel));
       this.setState({cards: this.props.cards});
+      this.resize();
     }
 
     }.bind(this));
@@ -133,11 +134,11 @@ class Home extends Component {
       console.log("Inbetween Card height", this.state.height);
       this.setState({height: (this.state.cards.length+9)* 400});
     } else if(window.innerWidth > 1260 && window.innerWidth <= 1500) {
-      console.log("Inbetween Card height", this.state.height);
-      this.setState({height: (this.state.cards.length+9)* 250});
+      console.log("Inbetween Card height 2", this.state.height);
+      this.setState({height: (this.state.cards.length+9)* 230});
     } else {
       console.log("All other card height", this.state.height);
-      this.setState({height: (this.state.cards.length+9) * 200});
+      this.setState({height: (this.state.cards.length+9) * 170});
     }
   }
 
@@ -157,7 +158,7 @@ class Home extends Component {
             title={card.title}
             rows={card.data.rows}
             cta={card.cta}
-            key={count++}/>
+            key={count++} />
           );
         } else if(card.type === "ShareCard") {
           return (
@@ -170,7 +171,8 @@ class Home extends Component {
               url={card.data.url}
               title={card.title}
               color={card.color}
-              ctaTitle={card.cta.title} />
+              ctaTitle={card.cta.title}
+              key={count++} />
           );
         }
     });
