@@ -18,6 +18,10 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    // Add an event listener for screen change
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
+
     console.log("this.props", this.state.cards);
     var requestKey = this.props.requestKey;
     var requestType = "";
@@ -137,7 +141,7 @@ class Home extends Component {
           <img className="header-logo" src="http://res.cloudinary.com/dya5uydvs/image/upload/v1515375188/sikka_icon_llxsqv.png" />
           <h1 className="Home-title">Welcome {this.props.username}</h1>
         </header>
-        <div className="Cards">
+        <div className="Cards" style={cardsStyle}>
           {cardItems}
           <ShareCard
             posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
