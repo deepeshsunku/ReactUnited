@@ -35,23 +35,28 @@ class Home extends Component {
 
     var cards = [
       {type: "TwoColumn", name: "Morning Report", requestType: "morning%20report", startDate: today, endDate: today},
-      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '30 MINS AGO', url: 'https://store.sikkasoft.com/Invisalign', title: 'Invisalign', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", color: '#3CA4EA', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '30 MINS AGO', url: 'https://store.sikkasoft.com/Invisalign', title: 'INVISALIGN', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "TwoColumn", name: "Day Closing", requestType: "Day%20Closing%20Report", startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", name: "Accounts Receivable", requestType: "Accounts%20Receivable", startDate: today, endDate: today},
-      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/AmazonDental', title: 'Amazon Dental', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '20 DECEMBER 2017', url: 'http://www.dentalproductsreport.com/dental/article/latest-trends-dental-practice-accounts-receivable', title: 'Accounts Receivable', ctaTitle: 'Learn More'},
+      {type: "ShareCard", color: '#1169B2', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/AmazonDental', title: 'AMAZON DENTAL', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/pa', title: 'Practice Assistant', ctaTitle: 'Learn more at the Sikka Marketplace'},
-      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'YESTERDAY', url: 'https://store.sikkasoft.com/Rhinogram', title: 'Rhinogram', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", color: '#2071B3', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'YESTERDAY', url: 'https://store.sikkasoft.com/Rhinogram', title: 'Rhinogram', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '30 DECEMBER 2017', url: 'https://blog.intercom.com/why-cards-are-the-future-of-the-web/', title: 'Cards', ctaTitle: 'Learn More'},
       {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '2 JANUARY 2018', url: 'https://techcrunch.com/2017/10/11/amazon-alexa-devices-can-finally-distinguish-between-different-voices/', title: 'Alexa', ctaTitle: 'Learn More'},
-      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '27 DECEMBER 2017', url: 'https://store.sikkasoft.com/PatientPopRegister', title: 'Patient Pop', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", color: '#5458B0', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '27 DECEMBER 2017', url: 'https://store.sikkasoft.com/PatientPopRegister', title: 'Patient Pop', ctaTitle: 'Learn more at the Sikka Marketplace', imgUrl: 'https://marketplaceportal.s3.amazonaws.com/201801042246548979.png'},
       {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '22 DECEMBER 2017', url: 'https://techcrunch.com/2017/12/31/voice-interfaces-beginning-to-find-their-way-into-business/', title: 'Voice Interfaces', ctaTitle: 'Learn More'},
-      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '20 DECEMBER 2017', url: 'http://www.dentistryiq.com/articles/apex360/2017/07/here-s-the-average-number-of-single-crowns-dentists-are-placing-and-where-the-trend-is-going.html', title: 'Crowns', ctaTitle: 'Learn More'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '20 DECEMBER 2017', url: 'https://newsroom.cnb.com/6-tips-to-improve-your-accounts-receivable-collections', title: 'Accounts Receivable', ctaTitle: 'Learn More'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/ICSystem', title: 'IC System', ctaTitle: 'Learn more at the Sikka Marketplace', imgUrl: 'https://marketplaceportal.s3.amazonaws.com/201712072204032930.png', description: 'IC System’s Dental Debt Collection services will bring more revenue into your office while preserving your sensitive patient relationships. Our Dental Debt Collection services ensure that your staff saves time from having to recover patient debts. Whether you’re part of a large clinic or a single-dentist practice, our products will meet your needs, allowing you to focus on what’s important: your patients.'},
       {type: "TwoColumn", name: "Patients Info", requestType: "New%20patients%20to%20Total%20Patients%20seen", startDate: today, endDate: today},
       {type: "TwoColumn", name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", startDate: yesterday, endDate: yesterday},
+      {type: "TwoColumn", name: "Morning Report", requestType: "morning%20report", startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", name: "Insurance Claims", requestType: "Insurance%20Claims", startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
       {type: "TwoColumn", name: "Top 20 Procedures by Production", requestType: "Top%2020%20Procedures%20by%20Production", startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
-      {type: "TwoColumn", name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", startDate: today, endDate: today}
+      {type: "TwoColumn", name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", startDate: today, endDate: today},
+      {type: "ShareCard", color: '#BB1D2C', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/patientnews', title: 'Patient News', ctaTitle: 'Learn more at the Sikka Marketplace', imgUrl: 'https://marketplaceportal.s3.amazonaws.com/201707281601027416.png'},
+      {type: "ShareCard", color: '#0009FE', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/hydra', title: 'Hydra', ctaTitle: 'Learn more at the Sikka Marketplace', imgUrl: 'https://marketplaceportal.s3.amazonaws.com/201710040005175562.png'}
     ];
 
     cards.forEach(function(card) {
@@ -75,7 +80,7 @@ class Home extends Component {
 
             var cardModel = {};
             cardModel.type = "TwoColumn";
-            cardModel.title = card.name;
+            cardModel.title = card.name.toUpperCase();
             cardModel.timestamp = "NOW";
             cardModel.data = {
               rows: rows
@@ -96,12 +101,15 @@ class Home extends Component {
     } else if(card.type === "ShareCard") {
       var shareCardModel = {};
       shareCardModel.type = "ShareCard";
-      shareCardModel.title = card.title;
+      shareCardModel.title = card.title.toUpperCase();
+      shareCardModel.color = card.color;
       shareCardModel.timestamp = card.timestamp;
       shareCardModel.data = {
         url: card.url,
         postedBy: card.postedBy,
-        posterImgUrl: card.posterImgUrl
+        posterImgUrl: card.posterImgUrl,
+        imgUrl: card.imgUrl,
+        description: card.description
       };
       shareCardModel.cta = {
         title: 'Learn more at the Sikka Marketplace',
@@ -155,10 +163,13 @@ class Home extends Component {
           return (
             <ShareCard
               posterImgUrl={card.data.posterImgUrl}
+              imgUrl={card.data.imgUrl}
+              description={card.data.description}
               postedBy={card.data.postedBy}
               timestamp={card.timestamp}
               url={card.data.url}
               title={card.title}
+              color={card.color}
               ctaTitle={card.cta.title} />
           );
         }

@@ -7,6 +7,14 @@
     url('../fonts/HelveticaNeueLight.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+
 .Card-div {
 	background: #fff;
 	border-radius: 10px;
@@ -84,10 +92,10 @@
     float: left;
 }
 
-.poster-details .title {
+/*.poster-details .title {
 		color: #653184;
     float: right;
-}
+}*/
 
 .poster-details .posted-timestamp {
 	color: #717985;

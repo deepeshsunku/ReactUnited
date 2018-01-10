@@ -7,6 +7,10 @@ class Header extends Component {
 	}
 
 	render() {
+		var valueStyle = {
+			color: this.props.color, float: 'right', 'font-family': 'Roboto'
+		}
+
   	return (
   		<div>
 				<div className="poster-image-div">
@@ -14,7 +18,7 @@ class Header extends Component {
         </div>
         <div className="poster-details">
     			<span className="posted-by">{this.props.postedBy}</span>
-      		<span className="title">{this.props.title}</span>
+      		<span style={valueStyle}>{this.props.title}</span>
           <br />
           <span className="posted-timestamp">{this.props.timestamp}</span>
         </div>
