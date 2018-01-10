@@ -1,8 +1,9 @@
-import { ADD_REQUEST_KEY, ADD_CARD } from '../Actions/actions'
+import { ADD_REQUEST_KEY, ADD_CARD, ADD_USER_NAME } from '../Actions/actions'
 
 const initialState = {
   	cards: [],
-  	requestKey: "5446619092e08157909b7a3221712eaf"
+  	requestKey: "",
+  	username: ""
 }
 
 function dynamicWallReducer(state, action) {
@@ -13,7 +14,14 @@ function dynamicWallReducer(state, action) {
   	switch (action.type) {
   		case ADD_REQUEST_KEY:
 	  		var newState = state;
-	  		newState.jwt = action.data;
+	  		newState.requestKey = action.data;
+	  		console.log("New state.", newState);
+	  		return newState
+
+	  	case ADD_USER_NAME:
+	  		var newState = state;
+	  		newState.username = action.data;
+	  		console.log("New state.", newState);
 	  		return newState
 
 	  	case ADD_CARD:
