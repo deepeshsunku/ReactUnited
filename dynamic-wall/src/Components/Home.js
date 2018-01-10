@@ -23,32 +23,74 @@ class Home extends Component {
     var requestType = "";
 
     var today = moment().format('YYYY-MM-DD');
+    var startDate = "";
+    var endDate = "";
 
-    var cards = ["Morning Report", "Day Closing", "Accounts Receivable", "Patients Info"];
+    var cards = ["Morning Report", "Day Closing", "Accounts Receivable", "Patients Info",
+      "Daily Average Gross Production", "Daily Average Net Production", "Insurance Claims",
+      "Top 20 Procedures by Production", "Insurance Claims Pending"];
 
     cards.forEach(function(card) {
       switch(card) {
         case "Morning Report":
         requestType = "morning%20report"
+        startDate = today;
+        endDate = today;
         break;
 
         case "Day Closing":
         requestType = "Day%20Closing%20Report"
+        startDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        endDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
         break
 
         case "Accounts Receivable":
-        requestType = "Accounts%20Receivable"  
+        requestType = "Accounts%20Receivable"
+        startDate = today;
+        endDate = today;
         break
 
         case "Patients Info":
         requestType = "New%20patients%20to%20Total%20Patients%20seen"
+        startDate = today;
+        endDate = today;
+        break
+
+        case "Daily Average Gross Production":
+        requestType = "daily%20average%20gross%20production"
+        startDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        endDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        break
+
+        case "Daily Average Net Production":
+        requestType = "daily%20average%20net%20production"
+        startDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        endDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        break
+
+        case "Insurance Claims":
+        requestType = "Insurance%20Claims"
+        startDate = moment().subtract(31, 'days').format('YYYY-MM-DD');
+        endDate = today;
+        break
+
+        case "Top 20 Procedures by Production":
+        requestType = "Top%2020%20Procedures%20by%20Production"
+        startDate = moment().subtract(31, 'days').format('YYYY-MM-DD');
+        endDate = today;
+        break
+
+        case "Insurance Claims Pending":
+        requestType = "Insurance%20Claims%20Pending"
+        startDate = today;
+        endDate = today;
         break
 
         default:
         break;
       }
       $.ajax({
-        url: `https://api.sikkasoft.com/v2/sikkanet_cards/${requestType}?request_key=${requestKey}&practice_id=1&startdate=${today}&enddate=${today}`,
+        url: `https://api.sikkasoft.com/v2/sikkanet_cards/${requestType}?request_key=${requestKey}&practice_id=1&startdate=${startDate}&enddate=${endDate}`,
         type: "GET",
         contentType: "application/json",
       }).done(function(data) {
@@ -58,7 +100,7 @@ class Home extends Component {
           console.log("GET success!!!", dataItems);
           dataItems.forEach(function(item) {
             rows.push({
-              name: item.ColName,
+              name: item.ColName.charAt(0).toUpperCase() + item.ColName.slice(1),
               value: item.RegionalValue,
               type: "String"
             });
@@ -162,6 +204,20 @@ class Home extends Component {
             url='https://store.sikkasoft.com/PatientPopRegister'
             title='Patient Pop'
             ctaTitle='Learn more at the Sikka Marketplace' />
+          <ShareCard
+            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
+            postedBy='SIKKA'
+            timestamp='27 DECEMBER 2017'
+            url='https://techcrunch.com/2017/12/31/voice-interfaces-beginning-to-find-their-way-into-business/'
+            title='Voice Interfaces'
+            ctaTitle='Learn more' />
+          <ShareCard
+            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
+            postedBy='SIKKA'
+            timestamp='27 DECEMBER 2017'
+            url='http://www.dentistryiq.com/articles/apex360/2017/07/here-s-the-average-number-of-single-crowns-dentists-are-placing-and-where-the-trend-is-going.html'
+            title='Crowns'
+            ctaTitle='Learn more' />
         </div>
       </div>
     );

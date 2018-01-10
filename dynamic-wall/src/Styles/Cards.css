@@ -12,7 +12,7 @@
 	border-radius: 10px;
 	margin: 10px;
 	box-shadow: 0pt 1pt 3pt 2pt rgba(0, 0, 0, 0.2);
-	max-width: 300pt;
+	width: 300pt;
     font-family: 'HelveticaNeue';
 }
 
@@ -96,7 +96,7 @@
 }
 
 .link-image {
-	max-width: 300pt;
+	width: 300pt;
 }
 
 .link-description {
