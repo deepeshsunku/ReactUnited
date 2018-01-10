@@ -18,7 +18,7 @@ class Login extends Component {
       <div className="App">
       	<header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Sikka Marketplace</h1>
+          <h1 className="App-title">Welcome to your Dynamic Wall</h1>
         </header>
         <div className="Div-center">
         	<LoginView />

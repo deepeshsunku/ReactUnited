@@ -12,15 +12,16 @@ class Header extends Component {
 		}
 
   	return (
-  		<div>
+  		<div className="poster-div">
 				<div className="poster-image-div">
           <img className="poster-image" src={this.props.posterImgUrl} />
+          <div className="poster-details-div">
+            <span className="posted-by">{this.props.postedBy}</span>
+            <span className="posted-timestamp">{this.props.timestamp}</span>
+          </div>
         </div>
         <div className="poster-details">
-    			<span className="posted-by">{this.props.postedBy}</span>
       		<span style={valueStyle}>{this.props.title}</span>
-          <br />
-          <span className="posted-timestamp">{this.props.timestamp}</span>
         </div>
 			</div>
   	);

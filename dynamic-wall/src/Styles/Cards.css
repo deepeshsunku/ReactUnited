@@ -64,6 +64,13 @@
   background: #eee;
 }
 
+.poster-div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0pt 5pt 5pt 5pt;
+}
+
 .poster-image {
 	height: 27pt;
 	width: 27pt;
@@ -75,27 +82,37 @@
 }
 
 .poster-image-div {
-    display: inline-block;
-    /* float: left; */
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .poster-details {
-    display: inline-block;
-	vertical-align: top;
-	margin-top: 8pt;
 	font-size: 12pt;
-/* float: left; */
-	width: 230pt;
+	text-align: right;
 }
 
 .poster-details .posted-by {
+	display: block;
     float: left;
+}
+
+.poster-details-div {
+	display: flex;
+	flex-flow: column;
+	width: 110px;
 }
 
 /*.poster-details .title {
 		color: #653184;
     float: right;
 }*/
+
+.posted-timestamp {
+	color: #717985;
+	font-size: 8pt;
+	display: inline-block;
+}
 
 .poster-details .posted-timestamp {
 	color: #717985;
