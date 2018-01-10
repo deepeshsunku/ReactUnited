@@ -4,6 +4,12 @@ import '../../../Styles/Cards.css';
 var valueStyle = {
 	color: '#41295a'
 }
+// var valueStyle = {
+// 				color: Please.make_color({
+// 					golden: false,
+// 					base_color: 'purple'
+// 				})
+// }
 
 class TwoColumn extends Component {
 	constructor(props) {
