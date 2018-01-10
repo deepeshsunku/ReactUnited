@@ -23,16 +23,17 @@ class Home extends Component {
     var requestType = "";
 
     var today = moment().format('YYYY-MM-DD');
+    var yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
     var startDate = "";
     var endDate = "";
 
     var cards = [
       {type: "TwoColumn", name: "Morning Report", requestType: "morning%20report", startDate: today, endDate: today},
-      {type: "TwoColumn", name: "Day Closing", requestType: "Day%20Closing%20Report", startDate: moment().subtract(1, 'days').format('YYYY-MM-DD'), endDate: moment().subtract(1, 'days').format('YYYY-MM-DD')},
+      {type: "TwoColumn", name: "Day Closing", requestType: "Day%20Closing%20Report", startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", name: "Accounts Receivable", requestType: "Accounts%20Receivable", startDate: today, endDate: today},
       {type: "TwoColumn", name: "Patients Info", requestType: "New%20patients%20to%20Total%20Patients%20seen", startDate: today, endDate: today},
-      {type: "TwoColumn", name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", startDate: moment().subtract(1, 'days').format('YYYY-MM-DD'), endDate: moment().subtract(1, 'days').format('YYYY-MM-DD')},
-      {type: "TwoColumn", name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", startDate: moment().subtract(1, 'days').format('YYYY-MM-DD'), endDate: moment().subtract(1, 'days').format('YYYY-MM-DD')},
+      {type: "TwoColumn", name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", startDate: yesterday, endDate: yesterday},
+      {type: "TwoColumn", name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", name: "Insurance Claims", requestType: "Insurance%20Claims", startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
       {type: "TwoColumn", name: "Top 20 Procedures by Production", requestType: "Top%2020%20Procedures%20by%20Production", startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
       {type: "TwoColumn", name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", startDate: today, endDate: today}
