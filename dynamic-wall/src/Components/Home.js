@@ -13,19 +13,11 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
-    console.log("State updated", window.innerWidth);
-    if(window.innerWidth <= 760) {
-      this.state = { cards: this.props.cards, data: false, height: 4500 };
-    } else {
-      this.state = { cards: this.props.cards, data: false, height: 32200 };
-    }
+    console.log("State updated");
+    this.state = { cards: this.props.cards, data: false };
   }
 
   componentDidMount() {
-    // Add an event listener for screen change
-    window.addEventListener("resize", this.resize.bind(this));
-    this.resize();
-
     console.log("this.props", this.state.cards);
     var requestKey = this.props.requestKey;
     var requestType = "";
@@ -34,71 +26,21 @@ class Home extends Component {
     var startDate = "";
     var endDate = "";
 
-    var cards = ["Morning Report", "Day Closing", "Accounts Receivable", "Patients Info",
-      "Daily Average Gross Production", "Daily Average Net Production", "Insurance Claims",
-      "Top 20 Procedures by Production", "Insurance Claims Pending"];
+    var cards = [
+      {type: "TwoColumn", name: "Morning Report", requestType: "morning%20report", startDate: today, endDate: today},
+      {type: "TwoColumn", name: "Day Closing", requestType: "Day%20Closing%20Report", startDate: moment().subtract(1, 'days').format('YYYY-MM-DD'), endDate: moment().subtract(1, 'days').format('YYYY-MM-DD')},
+      {type: "TwoColumn", name: "Accounts Receivable", requestType: "Accounts%20Receivable", startDate: today, endDate: today},
+      {type: "TwoColumn", name: "Patients Info", requestType: "New%20patients%20to%20Total%20Patients%20seen", startDate: today, endDate: today},
+      {type: "TwoColumn", name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", startDate: moment().subtract(1, 'days').format('YYYY-MM-DD'), endDate: moment().subtract(1, 'days').format('YYYY-MM-DD')},
+      {type: "TwoColumn", name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", startDate: moment().subtract(1, 'days').format('YYYY-MM-DD'), endDate: moment().subtract(1, 'days').format('YYYY-MM-DD')},
+      {type: "TwoColumn", name: "Insurance Claims", requestType: "Insurance%20Claims", startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
+      {type: "TwoColumn", name: "Top 20 Procedures by Production", requestType: "Top%2020%20Procedures%20by%20Production", startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
+      {type: "TwoColumn", name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", startDate: today, endDate: today}
+    ];
 
     cards.forEach(function(card) {
-      switch(card) {
-        case "Morning Report":
-        requestType = "morning%20report"
-        startDate = today;
-        endDate = today;
-        break;
-
-        case "Day Closing":
-        requestType = "Day%20Closing%20Report"
-        startDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-        endDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-        break
-
-        case "Accounts Receivable":
-        requestType = "Accounts%20Receivable"
-        startDate = today;
-        endDate = today;
-        break
-
-        case "Patients Info":
-        requestType = "New%20patients%20to%20Total%20Patients%20seen"
-        startDate = today;
-        endDate = today;
-        break
-
-        case "Daily Average Gross Production":
-        requestType = "daily%20average%20gross%20production"
-        startDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-        endDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-        break
-
-        case "Daily Average Net Production":
-        requestType = "daily%20average%20net%20production"
-        startDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-        endDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-        break
-
-        case "Insurance Claims":
-        requestType = "Insurance%20Claims"
-        startDate = moment().subtract(31, 'days').format('YYYY-MM-DD');
-        endDate = today;
-        break
-
-        case "Top 20 Procedures by Production":
-        requestType = "Top%2020%20Procedures%20by%20Production"
-        startDate = moment().subtract(31, 'days').format('YYYY-MM-DD');
-        endDate = today;
-        break
-
-        case "Insurance Claims Pending":
-        requestType = "Insurance%20Claims%20Pending"
-        startDate = today;
-        endDate = today;
-        break
-
-        default:
-        break;
-      }
       $.ajax({
-        url: `https://api.sikkasoft.com/v2/sikkanet_cards/${requestType}?request_key=${requestKey}&practice_id=1&startdate=${startDate}&enddate=${endDate}`,
+        url: `https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`,
         type: "GET",
         contentType: "application/json",
       }).done(function(data) {
@@ -116,7 +58,7 @@ class Home extends Component {
 
           var cardModel = {};
           cardModel.type = "TwoColumn";
-          cardModel.title = card;
+          cardModel.title = card.name;
           cardModel.timestamp = "NOW";
           cardModel.data = {
             rows: rows
@@ -127,9 +69,9 @@ class Home extends Component {
           };
           console.log("GET success!!!", cardModel);
           this.props.dispatch(addCard(cardModel));
-          this.setState({cards: this.props.cards, height: this.state.height+200});
+          this.setState({cards: this.props.cards});
         } else {
-          alert("We had trouble fetching your data. Please try again")
+          alert("We had trouble fetching your data. Please try again.")
           console.log("GET auth!!!", data);
         }
       }.bind(this)
@@ -137,21 +79,8 @@ class Home extends Component {
     }.bind(this));
   }
 
-  resize() {
-    console.log("RESIZING...");
-    if(window.innerWidth <= 760) {
-      this.setState({height: 8500});
-    } else {
-      this.setState({height: 2000});
-    }
-  }
-
   render() {
-    const cardsStyle = {
-      height: `${this.state.height}px`
-    }
-
-    console.log("Card height", this.state.height);
+    console.log("Card state", this.state.cards);
     var count = 0;
     var cardItems = this.state.cards.map(function(card) {
         if(card.type === "TwoColumn") {
@@ -168,13 +97,25 @@ class Home extends Component {
         }
     });
 
+    var shareCardModel = {};
+    shareCardModel.type = "ShareCard";
+    shareCardModel.title = 'Invisalign';
+    shareCardModel.timestamp = "NOW";
+    shareCardModel.data = {
+      url: 'https://store.sikkasoft.com/Invisalign'
+    };
+    shareCardModel.cta = {
+      title: 'Learn more at the Sikka Marketplace',
+      url: 'https://store.sikkasoft.com/Invisalign'
+    };
+
     return (
       <div>
       	<header className="Home-header">
           <img className="header-logo" src="http://res.cloudinary.com/dya5uydvs/image/upload/v1515375188/sikka_icon_llxsqv.png" />
           <h1 className="Home-title">Welcome</h1>
         </header>
-        <div className="Cards" style={cardsStyle}>
+        <div className="Cards">
           {cardItems}
           <ShareCard
             posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
