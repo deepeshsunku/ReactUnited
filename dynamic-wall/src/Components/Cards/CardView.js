@@ -17,15 +17,16 @@ class CardView extends Component {
 
   	render() {
   		var count = 0;
+			console.log("this.props.color", this.props.color);
   		var rowItems = this.props.rows.map(function(row) {
 	      return (
-	        <TwoColumn name={row.name} value={row.value} key={count++}/>
+	        <TwoColumn color={row.color} name={row.name} value={row.value} key={count++}/>
 	      );
 	    });
 
     	return (
       		<div className="Card-div">
-		        <Header title={this.props.title} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
+		        <Header title={this.props.title} color={this.props.color} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
       			{rowItems}
       			<Cta title={this.props.cta.title} url={this.props.cta.url}/>
       		</div>

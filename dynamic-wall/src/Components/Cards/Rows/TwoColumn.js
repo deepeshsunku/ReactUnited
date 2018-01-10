@@ -14,16 +14,27 @@ var valueStyle = {
 class TwoColumn extends Component {
 	constructor(props) {
 	    super(props);
-	    this.state = { name: this.props.name, value: this.props.value };
+	    // this.state = { name: this.props.name, value: this.props.value };
 	}
   	render() {
+
+			// .Card-line-div {
+			// 	height: 0.8pt;
+			// 	background: #eee;
+			// 	margin: 0pt 5pt 0pt 5pt;
+			// }
+
+			var dividerStyle = {
+				background: this.props.color, height: '0.5pt', margin: '0pt 5pt 0pt 5pt'
+			}
+
     	return (
     		<div>
     			<div className="TwoColumn-div">
-	      			<span>{this.state.name}</span>
-	      			<span style={valueStyle}>{this.state.value}</span>
+	      			<span>{this.props.name}</span>
+	      			<span style={valueStyle}>{this.props.value}</span>
 	      		</div>
-	      		<div className="Card-line-div"></div>
+	      		<div style={dividerStyle}></div>
     		</div>
     	);
   	}

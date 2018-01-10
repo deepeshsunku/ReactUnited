@@ -8,7 +8,7 @@ class Header extends Component {
 
 	render() {
 		var valueStyle = {
-			color: this.props.color, float: 'right', 'font-family': 'Roboto'
+			color: this.props.color, float: 'right', 'fontFamily': 'Roboto'
 		}
 
   	return (
