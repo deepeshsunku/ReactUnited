@@ -2,7 +2,7 @@ import { ADD_REQUEST_KEY, ADD_CARD, ADD_USER_NAME } from '../Actions/actions'
 
 const initialState = {
   	cards: [],
-  	requestKey: "efbe037a7902c22421912788f295fb4d",
+  	requestKey: "df2ac3c53e8c43d26daef1fdf42d8def",
   	username: ""
 }
 
