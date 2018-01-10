@@ -31,10 +31,21 @@ class Home extends Component {
     var startDate = "";
     var endDate = "";
 
+    var sikkaPosterImgUrl = 'http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png';
+
     var cards = [
       {type: "TwoColumn", name: "Morning Report", requestType: "morning%20report", startDate: today, endDate: today},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '30 MINS AGO', url: 'https://store.sikkasoft.com/Invisalign', title: 'Invisalign', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "TwoColumn", name: "Day Closing", requestType: "Day%20Closing%20Report", startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", name: "Accounts Receivable", requestType: "Accounts%20Receivable", startDate: today, endDate: today},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/AmazonDental', title: 'Amazon Dental', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'TODAY', url: 'https://store.sikkasoft.com/pa', title: 'Practice Assistant', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: 'YESTERDAY', url: 'https://store.sikkasoft.com/Rhinogram', title: 'Rhinogram', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '30 DECEMBER 2017', url: 'https://blog.intercom.com/why-cards-are-the-future-of-the-web/', title: 'Cards', ctaTitle: 'Learn More'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '2 JANUARY 2018', url: 'https://techcrunch.com/2017/10/11/amazon-alexa-devices-can-finally-distinguish-between-different-voices/', title: 'Alexa', ctaTitle: 'Learn More'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '27 DECEMBER 2017', url: 'https://store.sikkasoft.com/PatientPopRegister', title: 'Patient Pop', ctaTitle: 'Learn more at the Sikka Marketplace'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '22 DECEMBER 2017', url: 'https://techcrunch.com/2017/12/31/voice-interfaces-beginning-to-find-their-way-into-business/', title: 'Voice Interfaces', ctaTitle: 'Learn More'},
+      {type: "ShareCard", postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, postedBy: 'SIKKA', timestamp: '20 DECEMBER 2017', url: 'http://www.dentistryiq.com/articles/apex360/2017/07/here-s-the-average-number-of-single-crowns-dentists-are-placing-and-where-the-trend-is-going.html', title: 'Crowns', ctaTitle: 'Learn More'},
       {type: "TwoColumn", name: "Patients Info", requestType: "New%20patients%20to%20Total%20Patients%20seen", startDate: today, endDate: today},
       {type: "TwoColumn", name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", startDate: yesterday, endDate: yesterday},
@@ -44,43 +55,64 @@ class Home extends Component {
     ];
 
     cards.forEach(function(card) {
-      $.ajax({
-        url: `https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`,
-        type: "GET",
-        contentType: "application/json",
-      }).done(function(data) {
-        if(data) {
-          var dataItems = data.KPIData[0].Value;
-          var rows = [];
-          console.log("GET success!!!", dataItems);
-          dataItems.forEach(function(item) {
-            rows.push({
-              name: item.ColName.charAt(0).toUpperCase() + item.ColName.slice(1),
-              value: item.RegionalValue,
-              type: "String"
+      if(card.type === "TwoColumn") {
+        $.ajax({
+          url: `https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`,
+          type: "GET",
+          contentType: "application/json",
+        }).done(function(data) {
+          if(data) {
+            var dataItems = data.KPIData[0].Value;
+            var rows = [];
+            console.log("GET success!!!", dataItems);
+            dataItems.forEach(function(item) {
+              rows.push({
+                name: item.ColName.charAt(0).toUpperCase() + item.ColName.slice(1),
+                value: item.RegionalValue,
+                type: "String"
+              });
             });
-          });
 
-          var cardModel = {};
-          cardModel.type = "TwoColumn";
-          cardModel.title = card.name;
-          cardModel.timestamp = "NOW";
-          cardModel.data = {
-            rows: rows
-          };
-          cardModel.cta = {
-            title: "Like what you see? Try the closing report",
-            url: "sikkasoft.com/dentalfloss"
-          };
-          console.log("GET success!!!", cardModel);
-          this.props.dispatch(addCard(cardModel));
-          this.setState({cards: this.props.cards});
-        } else {
-          alert("We had trouble fetching your data. Please try again.")
-          console.log("GET auth!!!", data);
-        }
-      }.bind(this)
-    );
+            var cardModel = {};
+            cardModel.type = "TwoColumn";
+            cardModel.title = card.name;
+            cardModel.timestamp = "NOW";
+            cardModel.data = {
+              rows: rows
+            };
+            cardModel.cta = {
+              title: "Like what you see? Try the closing report",
+              url: "sikkasoft.com/dentalfloss"
+            };
+            console.log("GET success!!!", cardModel);
+            this.props.dispatch(addCard(cardModel));
+            this.setState({cards: this.props.cards});
+          } else {
+            alert("We had trouble fetching your data. Please try again.")
+            console.log("GET auth!!!", data);
+          }
+        }.bind(this)
+      );
+    } else if(card.type === "ShareCard") {
+      var shareCardModel = {};
+      shareCardModel.type = "ShareCard";
+      shareCardModel.title = card.title;
+      shareCardModel.timestamp = card.timestamp;
+      shareCardModel.data = {
+        url: card.url,
+        postedBy: card.postedBy,
+        posterImgUrl: card.posterImgUrl
+      };
+      shareCardModel.cta = {
+        title: 'Learn more at the Sikka Marketplace',
+        url:  card.url
+      };
+
+      setTimeout(function(){ console.log("setTimeout"); }, 2000);
+      this.props.dispatch(addCard(shareCardModel));
+      this.setState({cards: this.props.cards});
+    }
+
     }.bind(this));
   }
 
@@ -105,7 +137,7 @@ class Home extends Component {
     const cardsStyle = {
       height: `${this.state.height}px`
     }
-    
+
     var count = 0;
     var cardItems = this.state.cards.map(function(card) {
         if(card.type === "TwoColumn") {
@@ -119,20 +151,18 @@ class Home extends Component {
             cta={card.cta}
             key={count++}/>
           );
+        } else if(card.type === "ShareCard") {
+          return (
+            <ShareCard
+              posterImgUrl={card.data.posterImgUrl}
+              postedBy={card.data.postedBy}
+              timestamp={card.timestamp}
+              url={card.data.url}
+              title={card.title}
+              ctaTitle={card.cta.title} />
+          );
         }
     });
-
-    var shareCardModel = {};
-    shareCardModel.type = "ShareCard";
-    shareCardModel.title = 'Invisalign';
-    shareCardModel.timestamp = "NOW";
-    shareCardModel.data = {
-      url: 'https://store.sikkasoft.com/Invisalign'
-    };
-    shareCardModel.cta = {
-      title: 'Learn more at the Sikka Marketplace',
-      url: 'https://store.sikkasoft.com/Invisalign'
-    };
 
     return (
       // console.log("username", this.props.username);
@@ -143,69 +173,6 @@ class Home extends Component {
         </header>
         <div className="Cards" style={cardsStyle}>
           {cardItems}
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='30 MINS AGO'
-            url='https://store.sikkasoft.com/Invisalign'
-            title='Invisalign'
-            ctaTitle='Learn more at the Sikka Marketplace' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='TODAY'
-            url='https://store.sikkasoft.com/AmazonDental'
-            title='Amazon Dental'
-            ctaTitle='Learn more at the Sikka Marketplace' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='TODAY'
-            url='https://store.sikkasoft.com/pa'
-            title='Practice Assistant'
-            ctaTitle='Learn more at the Sikka Marketplace' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='YESTERDAY'
-            url='https://store.sikkasoft.com/Rhinogram'
-            title='Rhinogram'
-            ctaTitle='Learn more at the Sikka Marketplace' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='5 JANUARY 2018'
-            url='https://blog.intercom.com/why-cards-are-the-future-of-the-web/'
-            title='Cards'
-            ctaTitle='Learn More' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='2 JANUARY 2018'
-            url='https://techcrunch.com/2017/10/11/amazon-alexa-devices-can-finally-distinguish-between-different-voices/'
-            title='Alexa'
-            ctaTitle='Learn More' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='27 DECEMBER 2017'
-            url='https://store.sikkasoft.com/PatientPopRegister'
-            title='Patient Pop'
-            ctaTitle='Learn more at the Sikka Marketplace' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='27 DECEMBER 2017'
-            url='https://techcrunch.com/2017/12/31/voice-interfaces-beginning-to-find-their-way-into-business/'
-            title='Voice Interfaces'
-            ctaTitle='Learn more' />
-          <ShareCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp='27 DECEMBER 2017'
-            url='http://www.dentistryiq.com/articles/apex360/2017/07/here-s-the-average-number-of-single-crowns-dentists-are-placing-and-where-the-trend-is-going.html'
-            title='Crowns'
-            ctaTitle='Learn more' />
         </div>
       </div>
     );
