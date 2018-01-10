@@ -142,6 +142,13 @@ class Home extends Component {
             url='https://store.sikkasoft.com/PatientPopRegister'
             title='Patient Pop'
             ctaTitle='Learn more at the Sikka Marketplace' />
+          <ShareCard
+            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
+            postedBy='SIKKA'
+            timestamp='27 DECEMBER 2017'
+            url='https://techcrunch.com/2017/12/31/voice-interfaces-beginning-to-find-their-way-into-business/'
+            title='Voice Interfaces'
+            ctaTitle='Learn more' />
         </div>
       </div>
     );
