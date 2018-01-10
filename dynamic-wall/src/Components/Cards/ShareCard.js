@@ -33,14 +33,17 @@ class ShareCard extends Component {
 	}
 
 	render() {
+    var imgUrl = this.props.imgUrl ? this.props.imgUrl : this.state.images[0];
+    var description = this.props.description ? this.props.description : this.state.description;
+
   	return (
       <div className="Card-div">
-        <Header title={this.props.title} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
+        <Header title={this.props.title} color={this.props.color} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
         <div className="link-details">
-          <img className="link-image" src={this.state.images[0]} />
+          <img className="link-image" src={imgUrl} />
         </div>
         <div className="link-description">
-          <span className="link-description-span">{this.state.description}...</span>
+          <span className="link-description-span">{description}...</span>
         </div>
         <Cta title={this.props.ctaTitle} url={this.state.url} />
       </div>
