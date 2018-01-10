@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import $ from "jquery";
 import { connect } from 'react-redux';
+import { addRequestKey, addUserName } from '../Actions/actions';
 import '../App.css';
 import axios from 'axios';
 
@@ -37,7 +38,7 @@ const buttonStyle = {
 class LoginView extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', password: ''};
+    this.state = {email: '', password: '', isLoading: false, loginState: ""};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,7 +58,9 @@ class LoginView extends Component {
       password: this.state.password
     }
     console.log("auth payload", payload);
+    this.setState({isLoading: true});
 
+    var self = this;
     axios({
       method: 'post',
       url: 'https://uat-secure-api3.sikkasoftware.com/api/v3/users/signin',
@@ -68,41 +71,30 @@ class LoginView extends Component {
       	app_name: 'PM'
       }
     }).then(function (response) {
-      browserHistory.push('/home');
       console.log(response);
+      console.log("request_key", response.data.response.profiles[0].request_key);
+      console.log("User name", response.data.response.firstname);
+      self.props.dispatch(addRequestKey(response.data.response.profiles[0].request_key));
+      self.props.dispatch(addUserName(`${response.data.response.firstname} ${response.data.response.lastname}`));
+      browserHistory.push('/home');
     }).catch(function (error) {
-      console.log(error);
+      self.setState({isLoading: false, loginState: "Error! Retry"});
+      console.log("Login error", error);
     });
-
-    // $.ajax({
-    //   url: "",
-    //   type: "POST",
-    //   data: JSON.stringify(payload),
-    //   contentType: "application/json",
-    //   }).done(function(data) {
-    //     if(data.success) {
-    //       console.log("POST auth success!!!", data, data.login.token);
-    //       //this.setState({isLoading: false, buttonState: "Completed!"});
-    //       this.props.dispatch(addToken(data.login.token));
-          // browserHistory.push('/home');
-    //     } else {
-    //       //this.setState({isLoading: false, buttonState: "Error! Retry"});
-    //       alert("We had trouble logging you in. Please try again.")
-    //       console.log("POST auth fail!!!", data);
-    //     }
-    //   }.bind(this)
-    // );
     event.preventDefault();
   }
 
   render() {
     return (
-      <div className="Form-div">
-        <form onSubmit={this.handleSubmit}>
-          <input style={textFieldStyle} type="text" placeholder="Email" value={this.state.value} onChange={this.handleChange} />
-          <input style={textFieldStyle} type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
-          <input style={buttonStyle} type="button" value="Sign In" onClick={this.handleSubmit} />
-        </form>
+      <div>
+        <div className="Form-div">
+          <form onSubmit={this.handleSubmit}>
+            <input style={textFieldStyle} type="text" placeholder="Email" value={this.state.value} onChange={this.handleChange} />
+            <input style={textFieldStyle} type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+            <input style={buttonStyle} type="button" value="Sign In" onClick={this.handleSubmit} />
+          </form>
+        </div>
+        <span className="Form-msg">{this.state.isLoading ? "Signing in..." : this.state.loginState}</span>
       </div>
     );
   }
@@ -114,4 +106,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default LoginView;
+export default connect(mapDispatchToProps)(LoginView);

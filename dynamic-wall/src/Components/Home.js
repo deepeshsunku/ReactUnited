@@ -131,10 +131,11 @@ class Home extends Component {
     };
 
     return (
+      // console.log("username", this.props.username);
       <div>
       	<header className="Home-header">
           <img className="header-logo" src="http://res.cloudinary.com/dya5uydvs/image/upload/v1515375188/sikka_icon_llxsqv.png" />
-          <h1 className="Home-title">Welcome</h1>
+          <h1 className="Home-title">Welcome {this.props.username}</h1>
         </header>
         <div className="Cards">
           {cardItems}
@@ -210,7 +211,8 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     cards: state.cards,
-    requestKey: state.requestKey
+    requestKey: state.requestKey,
+    username: state.username
   };
 }
 
