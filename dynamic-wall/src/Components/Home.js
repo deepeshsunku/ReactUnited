@@ -6,8 +6,9 @@ import $ from "jquery";
 import '../App.css';
 
 // Components
-import CardView from './Cards/CardView.js'
+import CardView from './Cards/CardView'
 import ShareCard from './Cards/ShareCard'
+import LineChartCard from './Cards/LineChartCard'
 
 class Home extends Component {
 
@@ -34,7 +35,9 @@ class Home extends Component {
     var sikkaPosterImgUrl = 'http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png';
     var vijayImgUrl = 'https://media-exp2.licdn.com/media/AAEAAQAAAAAAAA1cAAAAJGJlNjVjY2JiLTI2ZmQtNGM3My05ZTI1LWVmMDJiNzBhM2JlMA.jpg';
 
-    var cards = [
+    var cards = [,
+      {type: "LineChartCard", color: '#681c9a', name: "Gross and net collection 2017", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2017-01-01', endDate: '2017-12-31'},
+      {type: "LineChartCard", color: '#681c9a', name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
       {type: "TwoColumn", color: '#2071B3', name: "Morning Report", requestType: "morning%20report", timestamp: 'TODAY', startDate: today, endDate: today},
       {type: "ShareCard", color: '#22689F', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, timestamp: 'TODAY', url: 'https://store.sikkasoft.com/Invisalign', title: 'INVISALIGN', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "TwoColumn", color: '#2071B3', name: "Day Closing", requestType: "Day%20Closing%20Report", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
@@ -61,7 +64,7 @@ class Home extends Component {
       {type: "ShareCard", color: '#2071B3', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, timestamp: 'TODAY', url: 'https://store.sikkasoft.com/hydra', title: 'Hydra', ctaTitle: 'Learn more at the Sikka Marketplace', imgUrl: 'https://marketplaceportal.s3.amazonaws.com/201710040005175562.png'},
       {type: "ShareCard", color: '#681c9a', postedBy: 'VIJAY SIKKA', posterImgUrl: vijayImgUrl, timestamp: '5 JANUARY 2018', url: 'https://www.eff.org/ai/metrics', title: 'AI Progress Measurement', ctaTitle: 'Learn More'},
       {type: "ShareCard", color: '#681c9a', postedBy: 'VIJAY SIKKA', posterImgUrl: vijayImgUrl, timestamp: '2 JANUARY 2018', url: 'https://www.linkedin.com/pulse/sikka-software-partner-summit-vijay-sikka/', title: 'Sikka Software Partner Summit', ctaTitle: 'Learn More'},
-      {type: "ShareCard", color: '#681c9a', postedBy: 'VIJAY SIKKA', posterImgUrl: vijayImgUrl, timestamp: '22 DECEMBER 2017', url: 'https://betterhumans.coach.me/this-is-how-to-get-real-feedback-without-asking-for-it-4e877e939b2c', title: 'Real Feedback', ctaTitle: 'Learn More'},
+      {type: "ShareCard", color: '#681c9a', postedBy: 'VIJAY SIKKA', posterImgUrl: vijayImgUrl, timestamp: '22 DECEMBER 2017', url: 'https://betterhumans.coach.me/this-is-how-to-get-real-feedback-without-asking-for-it-4e877e939b2c', title: 'Real Feedback', ctaTitle: 'Learn More'}
     ];
 
     cards.forEach(function(card) {
@@ -91,6 +94,58 @@ class Home extends Component {
             cardModel.timestamp = card.timestamp;
             cardModel.data = {
               rows: rows
+            };
+            cardModel.cta = {
+              title: "Learn More",
+              url: "https://practicemobilizer.com"
+            };
+            console.log("GET success!!!", cardModel);
+            this.props.dispatch(addCard(cardModel));
+            this.setState({cards: this.props.cards});
+          } else {
+            alert("We had trouble fetching your data. Please try again.")
+            console.log("GET auth!!!", data);
+          }
+        }.bind(this)
+      );
+      } else if(card.type === "LineChartCard") {
+        console.log(`LineChartCard request: https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`);
+        $.ajax({
+          url: `https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`,
+          type: "GET",
+          contentType: "application/json",
+        }).done(function(data) {
+          if(data) {
+            console.log("GET success!!!", cardModel);
+            var dataItems1 = data.KPIData[0] ? data.KPIData[0].Value : [];
+            var dataItems2 = data.KPIData[1] ? data.KPIData[1].Value : [];
+            var rows = [];
+            var allValues = [];
+
+            dataItems1.forEach(function(item, i) {
+              allValues.push(item.value);
+              allValues.push(dataItems2[i].value);
+
+              rows.push({
+                grossValue: item.value,
+                netValue: dataItems2[i].value,
+                grossTextValue: item.RegionalValue,
+                netTextValue: dataItems2[i].RegionalValue,
+                colName: item.ColName
+              });
+            });
+
+            allValues.sort(function(a, b){return a - b});
+
+            var cardModel = {};
+            cardModel.type = "LineChartCard";
+            cardModel.title = card.name.toUpperCase();
+            cardModel.color = card.color;
+            cardModel.timestamp = card.timestamp;
+            cardModel.data = {
+              rows,
+              minValue: allValues[0] * 0.98,
+              maxValue: allValues[allValues.length - 1] * 1.02
             };
             cardModel.cta = {
               title: "Learn More",
@@ -164,6 +219,18 @@ class Home extends Component {
             timestamp={card.timestamp}
             title={card.title}
             rows={card.data.rows}
+            color={card.color}
+            cta={card.cta}
+            key={count++} />
+          );
+        } else if(card.type === "LineChartCard") {
+          return (
+            <LineChartCard
+            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
+            postedBy='SIKKA'
+            timestamp={card.timestamp}
+            title={card.title}
+            data={card.data}
             color={card.color}
             cta={card.cta}
             key={count++} />
