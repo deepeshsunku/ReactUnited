@@ -30,8 +30,8 @@ class RadialChartCard extends Component {
   	return (
     		<div className="Card-div">
 	        <Header title={this.props.title} color={this.props.color} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
-					<RadialBarChart width={500} height={470} cx={187} cy={175} innerRadius={25} outerRadius={185} barSize={40} data={this.props.data.rows} startAngle={180} endAngle={-180}>
-		        <RadialBar minAngle={15} label={{ style: textStyle, fill: '#000', position: 'insideStart'}} background clockWise={true}  dataKey='value' />
+					<RadialBarChart width={500} height={460} cx={187} cy={175} innerRadius={25} outerRadius={185} barSize={40} data={this.props.data.rows} startAngle={180} endAngle={-180}>
+		        <RadialBar minAngle={15} label={{style: textStyle, fill: '#000', position: 'insideStart'}} background clockWise={true}  dataKey='value' />
 		        <Legend iconSize={10} width={400} height={150} layout='vertical' verticalAlign='middle' wrapperStyle={style} />
 						<Tooltip />
 	        </RadialBarChart>
