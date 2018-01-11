@@ -38,8 +38,8 @@ class Home extends Component {
     var vijayImgUrl = 'https://media-exp2.licdn.com/media/AAEAAQAAAAAAAA1cAAAAJGJlNjVjY2JiLTI2ZmQtNGM3My05ZTI1LWVmMDJiNzBhM2JlMA.jpg';
 
     var cards = [
-      {type: "LineChartCard", color: '#1B5E20', postedOn: moment(), name: "Gross and net collection 2017", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2017-01-01', endDate: '2017-12-31'},
-      {type: "LineChartCard", color: '#1B5E20', postedOn: moment().subtract(1, 'days'), name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
+      {type: "LineChartCard", color: '#681c9a', postedOn: moment(), name: "Gross and net collection 2017", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2017-01-01', endDate: '2017-12-31'},
+      {type: "LineChartCard", color: '#681c9a', postedOn: moment().subtract(1, 'days'), name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
       {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
       {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
       {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
@@ -116,6 +116,7 @@ class Home extends Component {
         }.bind(this)
       );
     } else if(card.type === "LineChartCard") {
+        console.log(`LineChartCard request: https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`);
         $.ajax({
           url: `https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`,
           type: "GET",
@@ -211,6 +212,7 @@ class Home extends Component {
           cardModel.title = card.name.toUpperCase();
           cardModel.color = card.color;
           cardModel.timestamp = card.timestamp;
+          cardModel.postedOn = card.postedOn;
           cardModel.data = {
             rows
           };
@@ -227,11 +229,9 @@ class Home extends Component {
         }
       }.bind(this)
     );
-  } else if(card.type === "ShareCard") {
-      console.log("Card title before", card.title);
+    } else if(card.type === "ShareCard") {
       LinkPreview.getPreview(card.url)
       .then(function(data) {
-        console.log("Card title after", card.title);
         var shareCardModel = {};
         shareCardModel.type = "ShareCard";
         shareCardModel.title = card.title ? card.title.toUpperCase() : data.title;
@@ -304,7 +304,7 @@ class Home extends Component {
             <LineChartCard
               posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
               postedBy='SIKKA'
-              timestamp={card.timestamp}
+              timestamp={card.postedOn.calendar()}
               title={card.title}
               data={card.data}
               color={card.color}
@@ -316,7 +316,7 @@ class Home extends Component {
             <RadialChartCard
               posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
               postedBy='SIKKA'
-              timestamp={card.timestamp}
+              timestamp={card.postedOn.calendar()}
               title={card.title}
               data={card.data}
               color={card.color}
