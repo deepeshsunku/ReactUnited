@@ -166,8 +166,10 @@ class Home extends Component {
         }.bind(this)
       );
     } else if(card.type === "ShareCard") {
+      console.log("Card title before", card.title);
       LinkPreview.getPreview(card.url)
       .then(function(data) {
+        console.log("Card title after", card.title);
         var shareCardModel = {};
         shareCardModel.type = "ShareCard";
         shareCardModel.title = card.title ? card.title.toUpperCase() : data.title;
@@ -249,6 +251,7 @@ class Home extends Component {
             key={count++} />
           );
         } else if(card.type === "ShareCard") {
+          console.log("ShareCard", card.title, count);
           return (
             <ShareCard
               posterImgUrl={card.data.posterImgUrl}
