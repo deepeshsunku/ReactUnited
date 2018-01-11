@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LinkPreview from 'react-native-link-preview';
 import Cta from './Rows/Cta';
 import Header from './Rows/Header';
 import '../../Styles/Cards.css';
@@ -23,29 +22,44 @@ class ShareCard extends Component {
     super(props);
     this.state = {
       url: null,
-      title: null,
-      description: null,
-      images: []
+      title: this.props.title,
+      description: this.props.description,
+      images: [],
+      imgUrl: this.props.imgUrl,
+      ctaTitle: this.props.ctaTitle,
+      color: this.props.color,
+      posterImgUrl: this.props.posterImgUrl,
+      postedBy: this.props.postedBy,
+      timestamp: this.props.timestamp
     };
-
-    LinkPreview.getPreview(this.props.url)
-      .then(data => this.setState({url: data.url, title: data.title, description: data.description, images: data.images}));
 	}
 
+  componentDidMount() {
+    // LinkPreview.getPreview(this.props.url)
+    // .then(function(data) {
+    //   if(this.refs.myRef) {
+    //     var description = this.state.description ? this.state.description : data.description;
+    //     var imgUrl = this.state.imgUrl ? this.state.imgUrl : data.images[0];
+    //     var title = this.state.title ? this.state.title : data.title;
+    //     this.setState({url: data.url, title: title, description: description, images: data.images, imgUrl: imgUrl});
+    //   }
+    // }.bind(this));
+  }
+
 	render() {
-    var imgUrl = this.props.imgUrl ? this.props.imgUrl : this.state.images[0];
-    var description = this.props.description ? this.props.description : this.state.description;
+    var imgUrl = this.state.imgUrl;
+    var description = this.state.description;
 
   	return (
-      <div className="Card-div">
-        <Header title={this.props.title} color={this.props.color} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
+      <div className="Card-div" ref="myRef">
+        <Header title={this.state.title} color={this.state.color} posterImgUrl={this.state.posterImgUrl} postedBy={this.state.postedBy} timestamp={this.state.timestamp} />
         <div className="link-details">
           <img className="link-image" src={imgUrl} />
         </div>
         <div className="link-description">
           <span className="link-description-span">{description}...</span>
         </div>
-        <Cta title={this.props.ctaTitle} url={this.state.url} />
+        <Cta title={this.state.ctaTitle} url={this.state.url} />
       </div>
   	);
 	}
