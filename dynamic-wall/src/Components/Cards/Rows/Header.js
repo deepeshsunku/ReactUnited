@@ -17,7 +17,7 @@ class Header extends Component {
           <img className="poster-image" src={this.props.posterImgUrl} />
           <div className="poster-details-div">
             <span className="posted-by">{this.props.postedBy}</span>
-            <span className="posted-timestamp">{this.props.timestamp}</span>
+            <span className="posted-timestamp">{this.props.timestamp.toUpperCase()}</span>
           </div>
         </div>
         <div className="poster-details">

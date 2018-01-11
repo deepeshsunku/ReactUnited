@@ -100,7 +100,7 @@
 .poster-details-div {
 	display: flex;
 	flex-flow: column;
-	width: 110px;
+	width: 150px;
 }
 
 /*.poster-details .title {
