@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LinkPreview from 'react-native-link-preview';
 import Cta from './Rows/Cta';
 import Header from './Rows/Header';
 import '../../Styles/Cards.css';
@@ -21,23 +20,14 @@ const masonry = {
 class ShareCard extends Component {
 	constructor(props) {
     super(props);
-    this.state = {
-      url: null,
-      title: null,
-      description: null,
-      images: []
-    };
-
-    LinkPreview.getPreview(this.props.url)
-      .then(data => this.setState({url: data.url, title: data.title, description: data.description, images: data.images}));
 	}
 
 	render() {
-    var imgUrl = this.props.imgUrl ? this.props.imgUrl : this.state.images[0];
-    var description = this.props.description ? this.props.description : this.state.description;
+    var imgUrl = this.props.imgUrl;
+    var description = this.props.description;
 
   	return (
-      <div className="Card-div">
+      <div className="Card-div" ref="myRef">
         <Header title={this.props.title} color={this.props.color} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
         <div className="link-details">
           <img className="link-image" src={imgUrl} />
@@ -45,7 +35,7 @@ class ShareCard extends Component {
         <div className="link-description">
           <span className="link-description-span">{description}...</span>
         </div>
-        <Cta title={this.props.ctaTitle} url={this.state.url} />
+        <Cta title={this.props.ctaTitle} url={this.props.url} />
       </div>
   	);
 	}
