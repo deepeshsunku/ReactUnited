@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #eee;
+  background-color: #fff;
   height: 150px;
   padding: 20px 20px 20px 20px;
   color: white;
@@ -57,7 +57,7 @@
 }
 
 .Home-header {
-  background-color: #eee;
+  background-color: #fff;
   height: 60px;
   color: white;
   display: flex;

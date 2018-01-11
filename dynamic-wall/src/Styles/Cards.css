@@ -18,7 +18,7 @@
 .Card-div {
 	background: #fff;
 	border-radius: 10px;
-	margin: 10px;
+	margin: 10px 5px 10px 5px;
 	box-shadow: 0pt 1pt 3pt 2pt rgba(0, 0, 0, 0.2);
 	width: 280pt;
     font-family: 'HelveticaNeue';

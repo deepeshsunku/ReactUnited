@@ -133,7 +133,7 @@ class Home extends Component {
   }
 
   resize() {
-    console.log("RESIZING...");
+    console.log("RESIZING...", window.innerWidth);
     if(window.innerWidth <= 860) {
       console.log("Mobile Card height", this.state.height);
       this.setState({height: (this.state.cards.length+9)* 950});
@@ -142,10 +142,10 @@ class Home extends Component {
       this.setState({height: (this.state.cards.length+9)* 400});
     } else if(window.innerWidth > 1260 && window.innerWidth <= 1500) {
       console.log("Inbetween Card height 2", this.state.height);
-      this.setState({height: (this.state.cards.length+9)* 230});
+      this.setState({height: (this.state.cards.length+9)* 180});
     } else {
       console.log("All other card height", this.state.height);
-      this.setState({height: (this.state.cards.length+9) * 170});
+      this.setState({height: (this.state.cards.length+9) * 180});
     }
   }
 
