@@ -10,6 +10,7 @@ import '../App.css';
 import CardView from './Cards/CardView'
 import ShareCard from './Cards/ShareCard'
 import LineChartCard from './Cards/LineChartCard'
+import RadialChartCard from './Cards/RadialChartCard'
 
 class Home extends Component {
 
@@ -36,9 +37,12 @@ class Home extends Component {
     var sikkaPosterImgUrl = 'http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png';
     var vijayImgUrl = 'https://media-exp2.licdn.com/media/AAEAAQAAAAAAAA1cAAAAJGJlNjVjY2JiLTI2ZmQtNGM3My05ZTI1LWVmMDJiNzBhM2JlMA.jpg';
 
-    var cards = [,
+    var cards = [
       {type: "LineChartCard", color: '#681c9a', postedOn: moment(), name: "Gross and net collection 2017", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2017-01-01', endDate: '2017-12-31'},
       {type: "LineChartCard", color: '#681c9a', postedOn: moment().subtract(1, 'days'), name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
+      {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
+      {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
+      {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(4, 'hours'), name: "Morning Report", requestType: "morning%20report", timestamp: 'TODAY', startDate: today, endDate: today},
       {type: "ShareCard", color: '#22689F', postedOn: moment().subtract(1, 'days'), postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, timestamp: 'TODAY', url: 'https://store.sikkasoft.com/Invisalign', title: 'INVISALIGN', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Day Closing", requestType: "Day%20Closing%20Report", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
@@ -165,11 +169,69 @@ class Home extends Component {
           }
         }.bind(this)
       );
+  } else if(card.type === "RadialChartCard") {
+      $.ajax({
+        url: `https://api.sikkasoft.com/v2/sikkanet_cards/${card.requestType}?request_key=${requestKey}&practice_id=1&startdate=${card.startDate}&enddate=${card.endDate}`,
+        type: "GET",
+        contentType: "application/json",
+      }).done(function(data) {
+        if(data) {
+          console.log("GET success!!!", cardModel);
+          // var dataItems1 = data.KPIData[0] ? data.KPIData[0].Value : [];
+          // var dataItems2 = data.KPIData[1] ? data.KPIData[1].Value : [];
+          // var rows = [];
+          // var allValues = [];
+          //
+          // dataItems1.forEach(function(item, i) {
+          //   allValues.push(item.value);
+          //   allValues.push(dataItems2[i].value);
+          //
+          //   rows.push({
+          //     grossValue: item.value,
+          //     netValue: dataItems2[i].value,
+          //     grossTextValue: item.RegionalValue,
+          //     netTextValue: dataItems2[i].RegionalValue,
+          //     colName: item.ColName
+          //   });
+          // });
+          //
+          // allValues.sort(function(a, b){return a - b});
+
+          const colors = ['#d0ed57', '#ffc658', '#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d', '#a4de6c'];
+          var rows = data.KPIData[0] ? data.KPIData[0].Value : [];
+
+          rows.forEach(function(item, i) {
+            if(i < colors.length) {
+              item.fill = colors[i];
+            }
+            item.name = item.ColName;
+          });
+
+          var cardModel = {};
+          cardModel.type = "RadialChartCard";
+          cardModel.title = card.name.toUpperCase();
+          cardModel.color = card.color;
+          cardModel.timestamp = card.timestamp;
+          cardModel.postedOn = card.postedOn;
+          cardModel.data = {
+            rows
+          };
+          cardModel.cta = {
+            title: "Learn More",
+            url: "https://practicemobilizer.com"
+          };
+          console.log("GET success!!!", cardModel);
+          this.props.dispatch(addCard(cardModel));
+          this.setState({cards: this.props.cards});
+        } else {
+          alert("We had trouble fetching your data. Please try again.")
+          console.log("GET auth!!!", data);
+        }
+      }.bind(this)
+    );
     } else if(card.type === "ShareCard") {
-      console.log("Card title before", card.title);
       LinkPreview.getPreview(card.url)
       .then(function(data) {
-        console.log("Card title after", card.title);
         var shareCardModel = {};
         shareCardModel.type = "ShareCard";
         shareCardModel.title = card.title ? card.title.toUpperCase() : data.title;
@@ -187,7 +249,6 @@ class Home extends Component {
           title: card.ctaTitle,
           url:  card.url
         };
-
         this.props.dispatch(addCard(shareCardModel));
         this.setState({cards: this.props.cards});
         this.resize();
@@ -241,14 +302,26 @@ class Home extends Component {
         } else if(card.type === "LineChartCard") {
           return (
             <LineChartCard
-            posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
-            postedBy='SIKKA'
-            timestamp={card.postedOn.calendar()}
-            title={card.title}
-            data={card.data}
-            color={card.color}
-            cta={card.cta}
-            key={count++} />
+              posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
+              postedBy='SIKKA'
+              timestamp={card.postedOn.calendar()}
+              title={card.title}
+              data={card.data}
+              color={card.color}
+              cta={card.cta}
+              key={count++} />
+          );
+        } else if(card.type === "RadialChartCard") {
+          return (
+            <RadialChartCard
+              posterImgUrl='http://res.cloudinary.com/dya5uydvs/image/upload/v1515375494/sikka_icon_oiaizj.png'
+              postedBy='SIKKA'
+              timestamp={card.postedOn.calendar()}
+              title={card.title}
+              data={card.data}
+              color={card.color}
+              cta={card.cta}
+              key={count++} />
           );
         } else if(card.type === "ShareCard") {
           console.log("ShareCard", card.title, count);
