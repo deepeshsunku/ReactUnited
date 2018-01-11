@@ -39,11 +39,11 @@ class Home extends Component {
 
     var cards = [
       {type: "LineChartCard", color: '#681c9a', postedOn: moment(), name: "Gross and net collection 2017", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2017-01-01', endDate: '2017-12-31'},
-      {type: "LineChartCard", color: '#681c9a', postedOn: moment().subtract(1, 'days'), name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
+      {type: "LineChartCard", color: '#681c9a', postedOn: moment().subtract(2, 'days'), name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
       {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
       {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
       {type: "RadialChartCard", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
-      {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(4, 'hours'), name: "Morning Report", requestType: "morning%20report", timestamp: 'TODAY', startDate: today, endDate: today},
+      {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(0.5, 'hours'), name: "Morning Report", requestType: "morning%20report", timestamp: 'TODAY', startDate: today, endDate: today},
       {type: "ShareCard", color: '#22689F', postedOn: moment().subtract(1, 'days'), postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, timestamp: 'TODAY', url: 'https://store.sikkasoft.com/Invisalign', title: 'INVISALIGN', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Day Closing", requestType: "Day%20Closing%20Report", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(3, 'days'), name: "Accounts Receivable", requestType: "Accounts%20Receivable", timestamp: 'TODAY', startDate: today, endDate: today},
@@ -60,7 +60,7 @@ class Home extends Component {
       {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(3, 'days'), name: "Patients Info", requestType: "New%20patients%20to%20Total%20Patients%20seen", timestamp: 'TODAY', startDate: today, endDate: today},
       {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(2, 'days'), name: "Daily Average Gross Production", requestType: "daily%20average%20gross%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
       {type: "TwoColumn", color: '#681c9a', postedOn: moment().subtract(1, 'days'), name: "Daily Average Net Production", requestType: "daily%20average%20net%20production", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},
-      {type: "TwoColumn", color: '#681c9a', postedOn: moment().subtract(1, 'days'), name: "Insurance Claims", requestType: "Insurance%20Claims", timestamp: 'TODAY', startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
+      {type: "TwoColumn", color: '#681c9a', postedOn: moment().subtract(5, 'days'), name: "Insurance Claims", requestType: "Insurance%20Claims", timestamp: 'TODAY', startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
       {type: "TwoColumn", color: '#681c9a', postedOn: moment().subtract(3, 'days'), name: "Top 20 Procedures by Production", requestType: "Top%2020%20Procedures%20by%20Production", timestamp: 'TODAY', startDate: moment().subtract(31, 'days').format('YYYY-MM-DD'), endDate: today},
       {type: "TwoColumn", color: '#681c9a', postedOn: moment().subtract(3, 'days'), name: "Insurance Claims Pending", requestType: "Insurance%20Claims%20Pending", timestamp: 'TODAY', startDate: today, endDate: today},
       {type: "TwoColumn", color: '#2071B3', postedOn: moment().subtract(1, 'days'), name: "Morning Report", requestType: "morning%20report", timestamp: 'YESTERDAY', startDate: yesterday, endDate: yesterday},
@@ -268,10 +268,10 @@ class Home extends Component {
       this.setState({height: (this.state.cards.length+9)* 200});
     } else if(window.innerWidth > 1000 && window.innerWidth <= 1400) {
       console.log("Inbetween Card height 2", this.state.height);
-      this.setState({height: (this.state.cards.length+9)* 150});
+      this.setState({height: (this.state.cards.length+9)* 130});
     } else {
       console.log("All other card height", this.state.height);
-      this.setState({height: (this.state.cards.length+9) * 150});
+      this.setState({height: (this.state.cards.length+9) * 100});
     }
   }
 

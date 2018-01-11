@@ -22,18 +22,6 @@ class ShareCard extends Component {
     super(props);
 	}
 
-  componentDidMount() {
-    // LinkPreview.getPreview(this.props.url)
-    // .then(function(data) {
-    //   if(this.refs.myRef) {
-    //     var description = this.state.description ? this.state.description : data.description;
-    //     var imgUrl = this.state.imgUrl ? this.state.imgUrl : data.images[0];
-    //     var title = this.state.title ? this.state.title : data.title;
-    //     this.setState({url: data.url, title: title, description: description, images: data.images, imgUrl: imgUrl});
-    //   }
-    // }.bind(this));
-  }
-
 	render() {
     var imgUrl = this.props.imgUrl;
     var description = this.props.description;
