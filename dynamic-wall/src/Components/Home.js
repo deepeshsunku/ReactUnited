@@ -36,8 +36,8 @@ class Home extends Component {
     var vijayImgUrl = 'https://media-exp2.licdn.com/media/AAEAAQAAAAAAAA1cAAAAJGJlNjVjY2JiLTI2ZmQtNGM3My05ZTI1LWVmMDJiNzBhM2JlMA.jpg';
 
     var cards = [,
-      {type: "LineChartCard", color: '#681c9a', name: "Gross and net collection 2017", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2017-01-01', endDate: '2017-12-31'},
-      {type: "LineChartCard", color: '#681c9a', name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
+      {type: "LineChartCard", color: '#1B5E20', name: "Gross and net collection 2017", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2017-01-01', endDate: '2017-12-31'},
+      {type: "LineChartCard", color: '#1B5E20', name: "Gross and net collection 2016", requestType: "Gross%20and%20net%20collection", timestamp: 'YESTERDAY', startDate: '2016-01-01', endDate: '2016-12-31'},
       {type: "TwoColumn", color: '#2071B3', name: "Morning Report", requestType: "morning%20report", timestamp: 'TODAY', startDate: today, endDate: today},
       {type: "ShareCard", color: '#22689F', postedBy: 'SIKKA', posterImgUrl: sikkaPosterImgUrl, timestamp: 'TODAY', url: 'https://store.sikkasoft.com/Invisalign', title: 'INVISALIGN', ctaTitle: 'Learn more at the Sikka Marketplace'},
       {type: "TwoColumn", color: '#2071B3', name: "Day Closing", requestType: "Day%20Closing%20Report", timestamp: 'TODAY', startDate: yesterday, endDate: yesterday},

@@ -10,11 +10,7 @@ import CardTitle from './Rows/CardTitle';
 import Cta from './Rows/Cta';
 import Header from './Rows/Header';
 
-var textStyle = {
-	fontSize: '10pt'
-}
-
-class LineChartCard extends Component {
+class RadialChartCard extends Component {
 	constructor(props) {
 	    super(props);
 	    console.log("this props LineChartCard", this.props);
@@ -24,15 +20,15 @@ class LineChartCard extends Component {
   	return (
     		<div className="Card-div">
 	        <Header title={this.props.title} color={this.props.color} posterImgUrl={this.props.posterImgUrl} postedBy={this.props.postedBy} timestamp={this.props.timestamp} />
-					<LineChart style={textStyle} width={375} height={400} data={this.props.data.rows}
+					<LineChart width={375} height={400} data={this.props.data.rows}
             margin={{top: 5, right: 15, left: 15, bottom: 5}}>
-			       <XAxis dataKey="colName" minTickGap="0" />
-			       <YAxis hide="true" unit="$" domain={[this.props.data.minValue, this.props.data.maxValue]}/>
+			       <XAxis dataKey="colName"/>
+			       <YAxis hide="true" domain={[this.props.data.minValue, this.props.data.maxValue]}/>
 						 <CartesianGrid strokeDasharray="3 3"/>
 			       <Tooltip />
 			       <Legend />
-						 <Line name='Gross ($)' type='monotone' dataKey='grossValue' stroke='#82ca9d' strokeWidth={2} />
-			       <Line name='Net ($)' type='monotone' dataKey='netValue' stroke='#ffc658' strokeWidth={2} />
+						 <Line name='Gross' type='monotone' dataKey='grossValue' stroke='#82ca9d' strokeWidth={2} />
+			       <Line name='Net' type='monotone' dataKey='netValue' stroke='#8884d8' strokeWidth={2} />
 					</LineChart>
     			<Cta title={this.props.cta.title} url={this.props.cta.url}/>
     		</div>
@@ -56,4 +52,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LineChartCard);
+)(RadialChartCard);
