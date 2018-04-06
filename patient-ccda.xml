@@ -1,0 +1,585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" classCode="DOCCLIN" moodCode="EVN" xmlns="urn:hl7-org:v3">
+  <realmCode code="US" />
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <templateId root="2.16.840.1.113883.10.20.22.1.2" />
+  <id root="1.1.1.1.1.1.1.1.1" extension="Test CCDA" />
+  <code code="34133-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Summarization of Episode Note" />
+  <title mediaType="text/plain" representation="TXT">Primo Adult Health: Health Summary</title>
+  <effectiveTime value="20180406144233.790-0700" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal" />
+  <languageCode code="en-US" />
+  <recordTarget typeCode="RCT" contextControlCode="OP">
+    <patientRole classCode="PAT">
+      <id root="2.16.840.1.113883.4.1" extension="123-456-7890" />
+      <addr use="HP">
+        <streetAddressLine partType="SAL">100 Marshall Lane</streetAddressLine>
+        <city partType="CTY">Springfield</city>
+        <state partType="STA">VA</state>
+        <postalCode partType="ZIP">22153</postalCode>
+        <country partType="CNT">US</country>
+      </addr>
+      <telecom value="tel:+1(571)555-0189" use="HP" />
+      <patient xsi:type="POCD_MT000040.Patient" classCode="PSN" determinerCode="INSTANCE">
+        <name>
+          <given partType="GIV">Nikolai</given>
+          <family partType="FAM">Bellic</family>
+        </name>
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Male" />
+        <birthTime value="20180406144233.866-0700" />
+        <maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatus" displayName="Married" />
+        <religiousAffiliationCode code="1041" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="ReligiousAffiliation" displayName="Roman Catholic" />
+        <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="OMB Standards for Race and Ethnicity" displayName="Not Hispanic or Latino" />
+        <raceCode code="2106-3" codeSystem="2.16.840.1.113883.6.238" codeSystemName="OMB Standards for Race and Ethnicity" displayName="White" />
+        <raceCode code="2131-1" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Test" displayName="Other Race" />
+        <languageCommunication>
+          <languageCode code="eng" />
+          <modeCode code="ESP" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode" displayName="Expressed spoken" />
+        </languageCommunication>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <author typeCode="AUT" contextControlCode="OP">
+    <time value="20180406144233.871-0700" />
+    <assignedAuthor classCode="ASSIGNED">
+      <id root="2.16.840.1.113883.4.6" extension="12345" />
+      <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Adult Medicine" />
+      <addr>
+        <streetAddressLine partType="SAL">1400 Main Street Ste G</streetAddressLine>
+        <city partType="CTY">Springfield</city>
+        <state partType="STA">VA</state>
+        <postalCode partType="ZIP">22150</postalCode>
+        <country partType="CNT">US</country>
+      </addr>
+      <telecom value="tel:+1(571)555-0179;ext=221" use="WP" />
+      <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name>
+          <given partType="GIV">Raymond</given>
+          <family partType="FAM">Boccino</family>
+          <suffix partType="SFX">MD</suffix>
+        </name>
+      </assignedPerson>
+    </assignedAuthor>
+  </author>
+  <dataEnterer typeCode="ENT" contextControlCode="OP">
+    <assignedEntity classCode="ASSIGNED">
+      <id root="1.1.1.1.1.1.1.1.2" extension="678910" />
+      <code code="364SA2200X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Adult Health" />
+      <addr>
+        <streetAddressLine partType="SAL">1400 Main Street Ste G</streetAddressLine>
+        <city partType="CTY">Springfield</city>
+        <state partType="STA">VA</state>
+        <postalCode partType="ZIP">22150</postalCode>
+        <country partType="CNT">US</country>
+      </addr>
+      <telecom value="tel:+1(571)555-0179;ext=222" use="WP" />
+      <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name>
+          <given partType="GIV">Mallory</given>
+          <family partType="FAM">Bardas</family>
+          <suffix partType="SFX">RN</suffix>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </dataEnterer>
+  <custodian typeCode="CST">
+    <assignedCustodian classCode="ASSIGNED">
+      <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id root="1.1.1.1.1.1.1.1.2" />
+        <name>Primo Adult Health</name>
+        <telecom value="tel:+1(571)555-0179;ext=222" use="WP" />
+        <addr>
+          <streetAddressLine partType="SAL">1400 Main Street Ste G</streetAddressLine>
+          <city partType="CTY">Springfield</city>
+          <state partType="STA">VA</state>
+          <postalCode partType="ZIP">22150</postalCode>
+          <country partType="CNT">US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient>
+    <intendedRecipient>
+      <id root="2.16.840.1.113883.4.6" extension="23456" />
+      <informationRecipient classCode="PSN" determinerCode="INSTANCE">
+        <name>
+          <given partType="GIV">Bernard</given>
+          <family partType="FAM">Crane</family>
+          <suffix partType="SFX">MD</suffix>
+        </name>
+      </informationRecipient>
+      <receivedOrganization classCode="ORG" determinerCode="INSTANCE">
+        <name>Springfield Geriatric Associates</name>
+        <telecom value="tel:+1(571)555-0165" use="WP" />
+        <addr>
+          <streetAddressLine partType="SAL">202 County Line Rd</streetAddressLine>
+          <city partType="CTY">Springfield</city>
+          <state partType="STA">VA</state>
+          <postalCode partType="ZIP">22150</postalCode>
+          <country partType="CNT">US</country>
+        </addr>
+        <standardIndustryClassCode code="207QG0300X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Geriatric Medicine" />
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <legalAuthenticator typeCode="LA" contextControlCode="OP">
+    <time value="20180406144233.879-0700" />
+    <signatureCode code="S" />
+    <assignedEntity classCode="ASSIGNED">
+      <id root="2.16.840.1.113883.4.6" extension="12345" />
+      <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Adult Medicine" />
+      <addr>
+        <streetAddressLine partType="SAL">1400 Main Street Ste G</streetAddressLine>
+        <city partType="CTY">Springfield</city>
+        <state partType="STA">VA</state>
+        <postalCode partType="ZIP">22150</postalCode>
+        <country partType="CNT">US</country>
+      </addr>
+      <telecom value="tel:+1(571)555-0179;ext=221" use="WP" />
+      <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name>
+          <given partType="GIV">Raymond</given>
+          <family partType="FAM">Boccino</family>
+          <suffix partType="SFX">MD</suffix>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </legalAuthenticator>
+  <participant typeCode="IND" contextControlCode="OP">
+    <associatedEntity classCode="PRS">
+      <addr>
+        <streetAddressLine partType="SAL">100 Marshall Lane</streetAddressLine>
+        <city partType="CTY">Springfield</city>
+        <state partType="STA">VA</state>
+        <postalCode partType="ZIP">22153</postalCode>
+        <country partType="CNT">US</country>
+      </addr>
+      <telecom value="tel:+1(571)555-0179;ext=221" />
+      <associatedPerson classCode="PSN" determinerCode="INSTANCE">
+        <name>
+          <given partType="GIV">Kathleen</given>
+          <family partType="FAM">McReary</family>
+        </name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>
+  <documentationOf typeCode="DOC">
+    <serviceEvent moodCode="EVN">
+      <effectiveTime>
+        <low value="20180406144233.883-0700" />
+        <high value="20180406144233.883-0700" />
+      </effectiveTime>
+    </serviceEvent>
+  </documentationOf>
+  <componentOf>
+    <encompassingEncounter classCode="ENC" moodCode="EVN">
+      <id root="00000000-0000-0000-0000-000000000000" />
+      <effectiveTime>
+        <low value="20180406144233.886-0700" />
+        <high value="20180406144233.886-0700" />
+      </effectiveTime>
+      <responsibleParty typeCode="RESP">
+        <assignedEntity classCode="ASSIGNED">
+          <id root="2.16.840.1.113883.4.6" extension="12345" />
+          <code code="207QA0505X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Adult Medicine" />
+          <addr>
+            <streetAddressLine partType="SAL">1400 Main Street Ste G</streetAddressLine>
+            <city partType="CTY">Springfield</city>
+            <state partType="STA">VA</state>
+            <postalCode partType="ZIP">22150</postalCode>
+            <country partType="CNT">US</country>
+          </addr>
+          <telecom value="tel:+1(571)555-0179;ext=221" use="WP" />
+          <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+            <name>
+              <given partType="GIV">Raymond</given>
+              <family partType="FAM">Boccino</family>
+              <suffix partType="SFX">MD</suffix>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </responsibleParty>
+      <location typeCode="LOC">
+        <healthCareFacility>
+          <id root="1.1.1.1.1.1.1.1.2" />
+          <code code="261QP2300X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Primary Care" />
+          <location classCode="PLC" determinerCode="INSTANCE">
+            <addr>
+              <streetAddressLine partType="SAL">1400 Main Street Ste G</streetAddressLine>
+              <city partType="CTY">Springfield</city>
+              <state partType="STA">VA</state>
+              <postalCode partType="ZIP">22150</postalCode>
+              <country partType="CNT">US</country>
+            </addr>
+          </location>
+          <serviceProviderOrganization classCode="ORG" determinerCode="INSTANCE">
+            <id root="1.1.1.1.1.1.1.1.2" />
+            <telecom value="tel:+1(571)555-0179;" use="WP" />
+            <addr>
+              <streetAddressLine partType="SAL">1400 Main Street Ste G</streetAddressLine>
+              <city partType="CTY">Springfield</city>
+              <state partType="STA">VA</state>
+              <postalCode partType="ZIP">22150</postalCode>
+              <country partType="CNT">US</country>
+            </addr>
+            <standardIndustryClassCode code="261QP2300X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Primary Care" />
+          </serviceProviderOrganization>
+        </healthCareFacility>
+      </location>
+    </encompassingEncounter>
+  </componentOf>
+  <component typeCode="COMP" contextConductionInd="true">
+    <structuredBody classCode="DOCBODY" moodCode="EVN">
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.21" />
+          <code code="42348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Advance Directives" />
+          <title mediaType="text/plain" representation="TXT">ADVANCE DIRECTIVES</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US">No advance directives exist for this patient.</text>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.41" />
+          <code code="8653-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HOSPITAL DISCHARGE INSTRUCTIONS" />
+          <title mediaType="text/plain" representation="TXT">Hospital Discharge Instructions</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US" />
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.6.1" />
+          <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" />
+          <title mediaType="text/plain" representation="TXT">ALLERGIES</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><list listType="ordered"><item><content ID="allergy1">Allergy to Penicillin drugs</content></item><item><content ID="allergy2">Allergy to Bee Pollen</content></item></list></text>
+          <entry typeCode="DRIV" contextConductionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" />
+              <id root="00000000-0000-0000-0000-000000000000" />
+              <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20180406144234.083-0700" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="true" contextConductionInd="true">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" />
+                  <id root="00000000-0000-0000-0000-000000000000" />
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low nullFlavor="UNK" />
+                  </effectiveTime>
+                  <value xsi:type="CD" code="416098002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="drug allergy">
+                    <originalText representation="TXT">
+                      <reference value="#allergy1" />
+                    </originalText>
+                  </value>
+                  <participant typeCode="CSM" contextControlCode="OP">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="CONT" determinerCode="INSTANCE">
+                        <code code="70618" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="Penicillin">
+                          <originalText representation="TXT">
+                            <reference value="#allergy1" />
+                          </originalText>
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.8" />
+                      <code code="SEV" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" />
+                      <text representation="TXT">
+                        <reference value="#allergy1" />
+                      </text>
+                      <statusCode code="completed" />
+                      <value xsi:type="CD" code="6736007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="moderate" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.12" />
+          <code code="29299-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="REASON FOR VISIT" />
+          <title mediaType="text/plain" representation="TXT">REASON FOR VISIT</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><paragraph>Recent falls</paragraph></text>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.15" />
+          <code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Family History" />
+          <title mediaType="text/plain" representation="TXT">FAMILY HISTORY</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><paragraph>Non-contributory</paragraph></text>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.14" />
+          <code code="47420-5" codeSystem="2.16.840.1.113883.6.1" />
+          <title mediaType="text/plain" representation="TXT">FUNCTIONAL STATUS</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US">Cognitive impairment. Patient uses cane for walking.</text>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.2.1" />
+          <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of immunizations" />
+          <title mediaType="text/plain" representation="TXT">IMMUNIZATIONS</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><list listType="ordered"><item><content ID="immunization1">Influenza, seasonal</content></item></list></text>
+          <entry contextConductionInd="true">
+            <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
+              <templateId root="2.16.840.1.113883.10.20.22.4.52" />
+              <id root="00000000-0000-0000-0000-000000000000" />
+              <statusCode code="completed" />
+              <effectiveTime />
+              <consumable typeCode="CSM">
+                <manufacturedProduct classCode="MANU">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.54" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="140" codeSystem="2.16.840.1.113883.12.292" codeSystemName="Vaccines administered (CVX)" displayName="Influenza, seasonal, injectable, preservative free">
+                      <originalText mediaType="text/x-hl7-text+xml">
+                        <reference value="#immunization1" />
+                      </originalText>
+                    </code>
+                  </manufacturedMaterial>
+                  <manufacturerOrganization classCode="ORG" determinerCode="INSTANCE">
+                    <name>Influenza Vaccine Company</name>
+                  </manufacturerOrganization>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.45" />
+          <id root="00000000-0000-0000-0000-000000000000" />
+          <code code="69730-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Instructions" />
+          <title mediaType="text/plain" representation="TXT">INSTRUCTIONS</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><paragraph>Patient is to schedule follow-up appointment with PCP after consultation.</paragraph></text>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.1.1" />
+          <code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF MEDICATION USE" />
+          <title mediaType="text/plain" representation="TXT">MEDICATIONS</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><list listType="ordered"><item><content ID="medication1">Lisinopril - 20mg by mouth once daily</content></item></list></text>
+          <entry contextConductionInd="true">
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+              <id root="00000000-0000-0000-0000-000000000000" />
+              <text representation="TXT">
+                <reference value="#medication1" />
+              </text>
+              <statusCode code="active" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20180406000000.000-0700" />
+                <high value="20180406000000.000-0700" />
+              </effectiveTime>
+              <effectiveTime xsi:type="PIVL_TS" operator="A" institutionSpecified="true">
+                <period unit="h" value="24.0" />
+              </effectiveTime>
+              <routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="oral" />
+              <doseQuantity />
+              <administrationUnitCode code="C42998" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="tablet" />
+              <consumable typeCode="CSM">
+                <manufacturedProduct classCode="MANU">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                  <manufacturedMaterial classCode="MMAT">
+                    <code code="314077" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="Lisinopril 20 MG Oral Tablet">
+                      <originalText mediaType="text/x-hl7-text+xml">
+                        <reference value="#medication1" />
+                      </originalText>
+                    </code>
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.10" />
+          <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Treatment plan" />
+          <title mediaType="text/plain" representation="TXT">PLAN OF CARE</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><paragraph>I have discussed this request for geriatric assessment and management with the patient and his wife who agree with this plan.</paragraph></text>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="PROBLEM LIST" />
+          <title mediaType="text/plain" representation="TXT">PROBLEM LIST</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><content ID="problems"/><list listType="ordered"><item><content ID="problem1">Hypertension</content></item><item><content ID="problem2">Hyperlipidemia</content></item></list></text>
+          <entry contextConductionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.3" />
+              <id root="00000000-0000-0000-0000-000000000000" />
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20180406144234.107-0700" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" contextConductionInd="true">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+                  <id root="00000000-0000-0000-0000-000000000000" />
+                  <code code="64572001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Condition" />
+                  <text representation="TXT">
+                    <reference value="#problem1" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20180406144234.107-0700" />
+                  </effectiveTime>
+                  <value xsi:type="CD" code="5962100" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Essential Hypertension" />
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.7.1" />
+          <code code="47519-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF PROCEDURES" />
+          <title mediaType="text/plain" representation="TXT">PROCEDURES</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><list listType="ordered"><item><content ID="procedure1">EKG (2012/10/15)</content></item><item><content ID="procedure2">Cholecystectomy (2006/06/01)</content></item></list></text>
+          <entry contextConductionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <id root="00000000-0000-0000-0000-000000000000" />
+              <code code="49038010" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="EKG">
+                <originalText representation="TXT">
+                  <reference value="#procedure1" />
+                </originalText>
+              </code>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20180406000000.000-0700" />
+                <high value="20180406000000.000-0700" />
+              </effectiveTime>
+              <performer typeCode="PRF">
+                <assignedEntity classCode="ASSIGNED">
+                  <id root="2.16.840.1.113883.4.6" extension="34567" />
+                  <code code="207RC0000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Cardiovascular Disease" />
+                  <addr>
+                    <streetAddressLine partType="SAL">209 County Line Rd</streetAddressLine>
+                    <city partType="CTY">Springfield</city>
+                    <state partType="STA">VA</state>
+                    <postalCode partType="ZIP">22150</postalCode>
+                    <country partType="CNT">US</country>
+                  </addr>
+                  <telecom value="tel:+1(571)555-0155" use="WP" />
+                  <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                    <name>
+                      <given partType="GIV">Dwayne</given>
+                      <family partType="FAM">Forge</family>
+                      <suffix partType="SFX">MD</suffix>
+                    </name>
+                  </assignedPerson>
+                  <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                    <id root="1.1.1.1.1.1.1.1.2" />
+                    <name>Primo Adult Health</name>
+                    <telecom value="tel:+1(571)555-0155" />
+                    <addr>
+                      <streetAddressLine partType="SAL">209 County Line Rd</streetAddressLine>
+                      <city partType="CTY">Springfield</city>
+                      <state partType="STA">VA</state>
+                      <postalCode partType="ZIP">22150</postalCode>
+                      <country partType="CNT">US</country>
+                    </addr>
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+            </procedure>
+          </entry>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1" />
+          <code code="42349-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="REASON FOR REFERRAL" />
+          <title mediaType="text/plain" representation="TXT">REASON FOR REFERRAL</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><paragraph>Geriatric assessment and management for concerns about dementia and falling</paragraph></text>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" />
+          <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="RESULTS" />
+          <title mediaType="text/plain" representation="TXT">RESULTS</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><list listType="ordered"><item><content ID="result1">TSH - 6 mIU/L (abnormal, high)</content></item><item><content ID="result2">Hgb a1c - 8% (abnormal, high)</content></item></list></text>
+          <entry contextConductionInd="true">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+              <id root="00000000-0000-0000-0000-000000000000" />
+              <code code="11579-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Thyrotropin [Units/volume] in Serum or Plasma by Detection limit less than or equal to 0.05 mIU/L" />
+              <statusCode code="completed" />
+              <component contextConductionInd="true">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <id root="00000000-0000-0000-0000-000000000000" />
+                  <code code="3016-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Thyrotropin [Units/volume] in Serum or Plasma" />
+                  <text representation="TXT">
+                    <reference value="#result1" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime value="20180406000000.000-0700" />
+                  <value xsi:type="PQ" unit="mIU/L" value="6" />
+                  <interpretationCode code="A" codeSystem="2.16.840.1.113883.5.83" codeSystemName="ObservationInterpretation" displayName="abnormal" />
+                  <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" codeSystemName="ObservationInterpretation" displayName="high" />
+                  <referenceRange typeCode="REFV">
+                    <observationRange classCode="OBS" moodCode="EVN.CRT">
+                      <text representation="TXT" mediaType="text/plain">normal: 0.29–5.11 mIU/L</text>
+                    </observationRange>
+                  </referenceRange>
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.17" />
+          <code code="29762-2" codeSystem="2.16.840.1.113883.6.1" displayName="SOCIAL HISTORY" />
+          <title mediaType="text/plain" representation="TXT">SOCIAL HISTORY</title>
+          <text mediaType="text/x-hl7-text+xml" language="en-US"><list listType="ordered"><item><content ID="sochist1">50 pack year smoking history, quit 1997</content></item><item><content ID="sochist2">etoh (alcohol) daily, patient reports varies from 1 to many cocktails per day</content></item></list></text>
+          <entry contextConductionInd="true">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.78" />
+              <id root="00000000-0000-0000-0000-000000000000" />
+              <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20180406144234.120-0700" />
+                <high value="20180406144234.120-0700" />
+              </effectiveTime>
+              <value xsi:type="CD" code="8517006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="former smoker" />
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component typeCode="COMP" contextConductionInd="true">
+        <section classCode="DOCSECT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.22.2.4" />
+          <code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="VITAL SIGNS" />
+          <title mediaType="text/plain" representation="TXT">VITAL SIGNS</title>
+          <text mediaType="text/x-hl7-text+xml">Vitals Normal:<list listType="ordered"> <item><content ID="vit1">Height - 70 in</content></item> <item><content ID="vit2">Weight - 220 lb_en</content></item> </list></text>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>
